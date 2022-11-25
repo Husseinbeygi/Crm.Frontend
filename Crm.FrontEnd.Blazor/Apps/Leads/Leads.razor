@@ -1,0 +1,52 @@
+﻿@page "/leads"
+@using Crm.FrontEnd.Blazor.Apps.Leads.Components
+
+
+<PageHeader
+	OnAddClick="OpenModal"	
+>
+	<h3>Leads</h3>
+</PageHeader>
+
+<LeadsGrid></LeadsGrid>
+
+<PageModal IsOpen="isopen" OnClose="@(() => isopen = false)" ModalTitle="CreateLead">
+    <div class="row">
+        <div class="col-6">
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+
+        </div>
+        <div class="col-6">
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+            <BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
+        </div>
+    </div>
+        <FormButtonGroup></FormButtonGroup>
+</PageModal>
+@code {
+    private string TextValue;
+
+	private bool isopen = false;
+	private void OpenModal()
+	{
+		isopen = true;
+	}
+
+}
