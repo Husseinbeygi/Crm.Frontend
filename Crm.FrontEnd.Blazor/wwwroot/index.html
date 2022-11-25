@@ -2,32 +2,38 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Crm.FrontEnd.Blazor</title>
-    <base href="/" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="manifest.json" rel="manifest" />
+	<meta charset="utf-8" />
+	<title>Crm.FrontEnd.Blazor</title>
+	<base href="/" />
+	<link href="css/app.css" rel="stylesheet" />
+	<link href="manifest.json" rel="manifest" />
 
-    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+	<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
 
-    <link href="_content/Bit.BlazorUI/styles/bit.blazorui.min.css" rel="stylesheet" />
+	<link href="_content/Bit.BlazorUI/styles/bit.blazorui.min.css" rel="stylesheet" />
 
-    <link href="Crm.FrontEnd.Blazor.styles.css" rel="stylesheet" />
+	<link href="Crm.FrontEnd.Blazor.styles.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+	<div id="app">
+		<div class="vh-100 d-flex  align-items-center justify-content-center gap-3">
+			<div class="h4 spinner-grow"></div>
+			<br />
+			<div class="h2">Loading...</div>
+		</div>
+	</div>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
-    <script src="_content/Bit.BlazorUI/scripts/bit.blazorui.min.js"></script>
-    <script src="libs/js/bootstrap.min.js"></script>
+	<div id="blazor-error-ui">
+		An unhandled error has occurred.
+		<a href="" class="reload">Reload</a>
+		<a class="dismiss">🗙</a>
+	</div>
+	<script src="_framework/blazor.webassembly.js"></script>
+	<script>navigator.serviceWorker.register('service-worker.js');</script>
+	<script src="_content/Bit.BlazorUI/scripts/bit.blazorui.min.js"></script>
+	<script src="libs/js/bootstrap.min.js"></script>
 
 </body>
 
