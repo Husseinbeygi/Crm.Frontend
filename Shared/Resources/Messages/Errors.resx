@@ -129,6 +129,9 @@
   <data name="InvalidVerificationKey" xml:space="preserve">
     <value>Verification key is not valid</value>
   </data>
+  <data name="NoAuthorization" xml:space="preserve">
+    <value>You are not authorized to access this resource</value>
+  </data>
   <data name="OptimisticConcurrencyException" xml:space="preserve">
     <value>Operation failed because another user has updated or deleted the record. Your changes have been lost. Please review their changes before trying again.</value>
   </data>

@@ -529,6 +529,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Machinery.
         /// </summary>
         public static string Machinery {
@@ -808,11 +817,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type And Press Enter.....
+        /// </summary>
+        public static string SearchPlaceholder {
+            get {
+                return ResourceManager.GetString("SearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Serial Number.
         /// </summary>
         public static string SerialNumber {
             get {
                 return ResourceManager.GetString("SerialNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
@@ -840,6 +867,15 @@ namespace Resources {
         public static string Supervisor {
             get {
                 return ResourceManager.GetString("Supervisor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support.
+        /// </summary>
+        public static string Support {
+            get {
+                return ResourceManager.GetString("Support", resourceCulture);
             }
         }
         

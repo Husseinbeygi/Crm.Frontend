@@ -97,6 +97,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not authorized to access this resource.
+        /// </summary>
+        public static string NoAuthorization {
+            get {
+                return ResourceManager.GetString("NoAuthorization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation failed because another user has updated or deleted the record. Your changes have been lost. Please review their changes before trying again..
         /// </summary>
         public static string OptimisticConcurrencyException {

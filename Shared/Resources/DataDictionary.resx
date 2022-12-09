@@ -273,6 +273,9 @@
   <data name="LeadStatus" xml:space="preserve">
     <value>Lead Status</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
   <data name="Machinery" xml:space="preserve">
     <value>Machinery</value>
   </data>
@@ -366,8 +369,14 @@
   <data name="Salutation" xml:space="preserve">
     <value>Salutation</value>
   </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>Type And Press Enter....</value>
+  </data>
   <data name="SerialNumber" xml:space="preserve">
     <value>Serial Number</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="Shipping" xml:space="preserve">
     <value>Shipping</value>
@@ -377,6 +386,9 @@
   </data>
   <data name="Supervisor" xml:space="preserve">
     <value>Supervisor</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
   </data>
   <data name="Technology" xml:space="preserve">
     <value>Technology</value>

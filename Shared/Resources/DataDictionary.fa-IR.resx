@@ -279,6 +279,9 @@
   <data name="LeadStatus" xml:space="preserve">
     <value>وضعیت سرنخ</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>خروج از سیستم</value>
+  </data>
   <data name="Machinery" xml:space="preserve">
     <value>دستگاه</value>
   </data>
@@ -366,8 +369,14 @@
   <data name="Salutation" xml:space="preserve">
     <value>خطاب</value>
   </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>بنویسید و Enter بزنید</value>
+  </data>
   <data name="SerialNumber" xml:space="preserve">
     <value>شماره سریال</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>تنظمیات</value>
   </data>
   <data name="Shipping" xml:space="preserve">
     <value>حمل دریایی</value>
@@ -377,6 +386,9 @@
   </data>
   <data name="Supervisor" xml:space="preserve">
     <value>مسئول</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>پشتیبانی</value>
   </data>
   <data name="Technology" xml:space="preserve">
     <value>فن آوری</value>
