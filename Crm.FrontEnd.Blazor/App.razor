@@ -1,27 +1,55 @@
 ﻿@using Crm.FrontEnd.Blazor.Shared
-@using Crm.FrontEnd.Blazor.Shared.Layouts.Ltr;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+
 
 <CascadingAuthenticationState>
 	<Router AppAssembly="@typeof(Program).Assembly"
-   AdditionalAssemblies="new[] { typeof(Leads.Pages.Leads).Assembly}">
+   AdditionalAssemblies="new[] { typeof(Leads.Pages.Index).Assembly}">
 		<Found Context="routeData">
-			<AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
-				<NotAuthorized>
-					@if (context?.User?.Identity?.IsAuthenticated == false)
-					{
-						<RedirectToLogin />
-					}
-					else
-					{
-						<p>
-							@(Resources.Messages.Errors.NoAuthorization)
-						</p>
-					}
-				</NotAuthorized>
-			</AuthorizeRouteView>
+
+			@if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+			{
+				<AuthorizeRouteView RouteData="@routeData" 
+					DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Rtl.RtlMainLayout)">
+					<NotAuthorized>
+						@if (context?.User?.Identity?.IsAuthenticated == false)
+						{
+							<RedirectToLogin />
+						}
+						else
+						{
+							<p>
+								@(Resources.Messages.Errors.NoAuthorization)
+							</p>
+						}
+					</NotAuthorized>
+				</AuthorizeRouteView>
+			}
+			else
+			{
+				<AuthorizeRouteView RouteData="@routeData" 
+					DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Ltr.LtrMainLayout)">
+					<NotAuthorized>
+						@if (context?.User?.Identity?.IsAuthenticated == false)
+						{
+							<RedirectToLogin />
+						}
+						else
+						{
+							<p>
+								@(Resources.Messages.Errors.NoAuthorization)
+							</p>
+						}
+					</NotAuthorized>
+				</AuthorizeRouteView>
+			}
+
 		</Found>
 		<NotFound>
-			<LayoutView Layout="@typeof(MainLayout)">
+			<LayoutView Layout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Ltr.LtrMainLayout)">
 				<p class="mx-auto">
 					Sorry, there is nothing at this address.
 				</p>
@@ -30,3 +58,35 @@
 	</Router>
 </CascadingAuthenticationState>
 
+
+@code {
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+		var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+		var userCulture = authState.User.Claims
+		.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Locality)?.Value ?? "en-US";
+
+		var userUICulture = authState.User.Claims
+				.FirstOrDefault(x => x.Type == "CurrentUICulture")?.Value ?? "en-US";
+
+		var cultureInfo =
+				new System.Globalization.CultureInfo(name: userCulture);
+		var cultureUIInfo =
+				new System.Globalization.CultureInfo(name: userUICulture);
+
+		var js = (IJSInProcessRuntime)JS;
+		var currentCulture = js.Invoke<string>("blazorCulture.get");
+
+		Console.WriteLine(cultureInfo);
+		Console.WriteLine(currentCulture);
+
+		if (currentCulture != cultureInfo.Name)
+		{
+
+			js.InvokeVoid("blazorCulture.set", cultureInfo.Name);
+
+			Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+		}
+	}
+}

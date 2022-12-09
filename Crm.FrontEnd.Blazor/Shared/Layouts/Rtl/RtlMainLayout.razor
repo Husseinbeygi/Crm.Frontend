@@ -1,0 +1,13 @@
+﻿@inherits LayoutComponentBase
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<div class="container-fluid backgroundcolor" dir="rtl">
+	<HeaderComponent></HeaderComponent>
+	@*	<Crm.FrontEnd.Blazor.Pages.CultureSelector />*@
+	<div>
+		@Body
+	</div>
+	<FooterComponent></FooterComponent>
+</div>

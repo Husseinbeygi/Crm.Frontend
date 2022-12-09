@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{68E523EA-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A94616F2-7B0C-405B-B08A-448D1DC30CDD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Components", "Shared\Framework.Components\Framework.Components\Framework.Components.csproj", "{5A9819F2-9430-467A-8DC4-7E4347C72CC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework", "Shared\Framework.Components\Framework.Components\Framework.csproj", "{5A9819F2-9430-467A-8DC4-7E4347C72CC7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resources", "Shared\Resources\Resources.csproj", "{B77CB895-C973-4F91-BF40-46F6F3DA91F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leads", "apps\Leads\Leads.csproj", "{18470B0D-9039-4EF3-A0F3-B325D43C11A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leads", "apps\Leads\Leads.csproj", "{18470B0D-9039-4EF3-A0F3-B325D43C11A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

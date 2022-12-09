@@ -2,6 +2,7 @@
 <BitActionButton IconName="BitIconName.Remove" OnClick="OnDeleteClick"></BitActionButton>
 <BitActionButton IconName="BitIconName.Edit" OnClick="OnEditClick"></BitActionButton>
 <BitActionButton IconName="BitIconName.Add" OnClick="OnAddClick"></BitActionButton>
+<BitActionButton IconName="BitIconName.Refresh" OnClick="OnRefreshClick"></BitActionButton>
 
 @code {
 
@@ -13,5 +14,8 @@
 
 	[Parameter]
 	public EventCallback OnEditClick { get; set; }
+
+	[Parameter]
+	public EventCallback OnRefreshClick { get; set; }
 
 }

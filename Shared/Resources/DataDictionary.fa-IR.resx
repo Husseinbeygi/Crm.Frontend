@@ -294,6 +294,9 @@
   <data name="Media" xml:space="preserve">
     <value>رسانه ها</value>
   </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>تلفن همراه</value>
+  </data>
   <data name="Money" xml:space="preserve">
     <value>مبلغ</value>
   </data>

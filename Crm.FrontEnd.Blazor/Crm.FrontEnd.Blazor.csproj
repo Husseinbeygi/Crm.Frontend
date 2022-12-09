@@ -1,10 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+	  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +14,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,13 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Shared\Layouts\Rtl\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\apps\Leads\Leads.csproj" />
-    <ProjectReference Include="..\Shared\Framework.Components\Framework.Components\Framework.Components.csproj" />
+    <ProjectReference Include="..\Shared\Framework.Components\Framework.Components\Framework.csproj" />
     <ProjectReference Include="..\Shared\Resources\Resources.csproj" />
   </ItemGroup>
 
+	
 </Project>
