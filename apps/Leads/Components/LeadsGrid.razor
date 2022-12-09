@@ -1,64 +1,87 @@
-﻿
-<div class="grid">
-	<div class="grid-container">
-		<BitDataGrid Items="@FilteredItems" ResizableColumns="true" Pagination="@pagination">
-			<BitDataGridPropertyColumn Class="column--large" Property="@(c => c.Name)" 
-				Sortable="true" IsDefaultSort="BitDataGridSortDirection.Ascending">
-				<ColumnOptions>
-					<BitSearchBox @bind-Value="typicalSampleNameFilter"
-		  Placeholder="Search on Name"
-		  InputHtmlAttributes="@(new Dictionary<string, object> {{"autofocus", true}})" />
-				</ColumnOptions>
-			</BitDataGridPropertyColumn>
-			<BitDataGridTemplateColumn Title="Flag" Align="BitDataGridAlign.Center">
-				<img class="flag" src="images/flags/@(context.Code).png" />
-			</BitDataGridTemplateColumn>
-			<BitDataGridPropertyColumn Property="@(c => c.Medals.Gold)" Sortable="true" />
-			<BitDataGridPropertyColumn Property="@(c => c.Medals.Silver)" Sortable="true" />
-			<BitDataGridPropertyColumn Property="@(c => c.Medals.Bronze)" Sortable="true" />
-			<BitDataGridPropertyColumn Property="@(c => c.Medals.Total)" Sortable="true" />
-		</BitDataGrid>
+﻿@inject Services.LeadsService _leadService
+
+
+
+<LoadingComponent Enabled="_isloading">
+	<div class="grid">
+		<div class="grid-container">
+			<BitDataGrid Items="@FilteredItems" ResizableColumns="true" Pagination="@pagination">
+
+				<BitDataGridPropertyColumn Title="#"
+			 Property="@(c => c.RowNumber)"
+			 Sortable="true"
+			 IsDefaultSort="BitDataGridSortDirection.Ascending">
+				</BitDataGridPropertyColumn>
+
+
+				<BitDataGridPropertyColumn Class="column--large"
+			 Title="@(Resources.DataDictionary.FullName)"
+			 Property="@(c => c.FullName)"
+			 Sortable="true"
+			 IsDefaultSort="BitDataGridSortDirection.Ascending">
+				</BitDataGridPropertyColumn>
+
+				<BitDataGridPropertyColumn Title="@(Resources.DataDictionary.Mobile)"
+			 Property="@(c => c.Mobile)"
+			 Sortable="true"
+			 IsDefaultSort="BitDataGridSortDirection.Ascending">
+				</BitDataGridPropertyColumn>
+
+				<BitDataGridPropertyColumn Title="@(Resources.DataDictionary.Indstry)"
+			 Property="@(c => c.Industry.Name)"
+			 Sortable="true"
+			 IsDefaultSort="BitDataGridSortDirection.Ascending">
+				</BitDataGridPropertyColumn>
+
+				<BitDataGridPropertyColumn Title="@(Resources.DataDictionary.LeadStatus)"
+			 Property="@(c => c.LeadStatus.Name)"
+			 Sortable="true"
+			 IsDefaultSort="BitDataGridSortDirection.Ascending">
+				</BitDataGridPropertyColumn>
+
+				<BitDataGridPropertyColumn Title="OwnerId"
+			 Property="@(c => c.OwnerId)"
+			 Sortable="true"
+			 IsDefaultSort="BitDataGridSortDirection.Ascending">
+				</BitDataGridPropertyColumn>
+
+			</BitDataGrid>
+		</div>
+		<BitDataGridPaginator Value="@pagination" />
 	</div>
-	<BitDataGridPaginator Value="@pagination" />
-</div>
+</LoadingComponent>
 
 @code {
-	IQueryable<Country> allCountries;
-	string typicalSampleNameFilter = string.Empty;
-	BitDataGridPaginationState pagination = new() { ItemsPerPage = 15 };
-	IQueryable<Country> FilteredItems => allCountries?.Where(x => x.Name.Contains(typicalSampleNameFilter, StringComparison.CurrentCultureIgnoreCase));
+	private bool _isloading;
+	public IQueryable<Models.LeadsViewModel> Leads { get; set; }
 
-	protected override async Task OnInitializedAsync()
+	string fullnameFilter = string.Empty;
+	BitDataGridPaginationState pagination = new() { ItemsPerPage = 10 };
+	IQueryable<Models.LeadsViewModel> FilteredItems =>
+	Leads?.Where(x => x.FullName.Contains(fullnameFilter, StringComparison.CurrentCultureIgnoreCase));
+
+	List<Models.LeadsViewModel> _leadsViewModels = new();
+
+	protected async override Task OnInitializedAsync()
 	{
-		allCountries = _countries.AsQueryable();
+		_isloading = true;
+		await base.OnInitializedAsync();
+		await GetLeadsAsync();
+		_isloading = false;
 	}
 
-	private readonly static Country[] _countries = new[]
+	public async Task GetLeadsAsync()
 	{
-		new Country { Code = "AR", Name="Argentina", Medals = new Medals { Gold = 0, Silver = 1, Bronze = 2 } },
-		new Country { Code = "AM", Name="Armenia", Medals = new Medals { Gold = 0, Silver = 2, Bronze = 2 } },
-		new Country { Code = "AU", Name = "Australia", Medals = new Medals { Gold = 17, Silver = 7, Bronze = 22 } },
-		new Country { Code = "AT", Name = "Austria", Medals = new Medals { Gold = 1, Silver = 1, Bronze = 5 } },
-		new Country { Code = "AZ", Name = "Azerbaijan", Medals = new Medals { Gold = 0, Silver = 3, Bronze = 4 } },
-		new Country { Code = "BS", Name = "Bahamas", Medals = new Medals { Gold = 2, Silver = 0, Bronze = 0 } },
-		new Country { Code = "BH", Name = "Bahrain", Medals = new Medals { Gold = 0, Silver = 1, Bronze = 0 } },
-		new Country { Code = "AR", Name="Argentina", Medals = new Medals { Gold = 0, Silver = 1, Bronze = 2 } },
 
-	};
+		var _leadsResponse = await _leadService.GetAsync<Models.LeadResponse>("Leads");
+		_leadsViewModels = _leadsResponse.data;
+		Leads = _leadsViewModels.AsQueryable();
 
-	public class Country
-	{
-		public string Code { get; set; }
-		public string Name { get; set; }
-		public Medals Medals { get; set; }
+		int i = 1;
+		foreach (var item in Leads)
+		{
+			item.RowNumber = i++;
+		}
 	}
 
-	public class Medals
-	{
-		public int Gold { get; set; }
-		public int Silver { get; set; }
-		public int Bronze { get; set; }
-		public int Total => Gold + Silver + Bronze;
-	}
 }
-

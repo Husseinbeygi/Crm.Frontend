@@ -17,12 +17,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Models\" />
-		<Folder Include="Services\" />
+		<Folder Include="Components\Forms\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Shared\Framework.Components\Framework.Components\Framework.Components.csproj" />
+	  <ProjectReference Include="..\..\Shared\Framework.Components\Framework.Components\Framework.csproj" />
 	  <ProjectReference Include="..\..\Shared\Resources\Resources.csproj" />
 	</ItemGroup>
 
@@ -30,7 +29,7 @@
 		<Content Update="Components\LeadsGrid.razor">
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 		</Content>
-		<Content Update="Pages\Leads.razor">
+		<Content Update="Pages\Index.razor">
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 		</Content>
 	</ItemGroup>
