@@ -1,0 +1,161 @@
+.grid[b-zvh3cmeots] {
+	display: inline-flex;
+	flex-direction: column;
+	width: 100%;
+	border: 1px solid #e9eaed;
+}
+
+	.grid .flag[b-zvh3cmeots] {
+		width: 32px;
+		height: 16px;
+		vertical-align: middle;
+	}
+
+.grid-container[b-zvh3cmeots] {
+	overflow: auto;
+}
+
+.grid[b-zvh3cmeots]  .column--large {
+	width: 220px;
+}
+
+.grid[b-zvh3cmeots]  th:nth-child(1) .col-options-button {
+	background-image: none;
+	cursor: pointer;
+}
+
+	.grid[b-zvh3cmeots]  th:nth-child(1) .col-options-button:before {
+		display: inline-block;
+		font-family: "Fabric MDL2 Assets";
+		font-style: normal;
+		font-weight: normal;
+		content: "\e721";
+		position: relative;
+		top: 2px;
+	}
+
+.grid[b-zvh3cmeots]  th:not(.col-sort-asc):not(.col-sort-desc) .sort-indicator:before {
+	display: inline-block;
+	font-family: "Fabric MDL2 Assets";
+	font-style: normal;
+	font-weight: normal;
+	content: "⇅";
+	position: relative;
+	top: -2px;
+}
+
+.grid[b-zvh3cmeots]  .bitdatagrid-paginator {
+	padding: 0.5rem;
+}
+
+	.grid[b-zvh3cmeots]  .bitdatagrid-paginator .pagination-text {
+		padding-top: 3px;
+	}
+
+	.grid[b-zvh3cmeots]  .bitdatagrid-paginator nav button {
+		border-radius: 0.25rem;
+	}
+
+		.grid[b-zvh3cmeots]  .bitdatagrid-paginator nav button:before {
+			vertical-align: middle;
+		}
+
+		.grid[b-zvh3cmeots]  .bitdatagrid-paginator nav button:not([disabled]) {
+			background-color: #eee;
+		}
+
+			.grid[b-zvh3cmeots]  .bitdatagrid-paginator nav button:not([disabled]):hover {
+				background-color: #d0d1d5;
+			}
+
+.grid[b-zvh3cmeots]  table {
+	position: relative;
+	min-width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	text-indent: initial;
+}
+
+.grid[b-zvh3cmeots]  thead th:not(:last-child) {
+	border-right: 1px solid #e9eaed;
+}
+
+.grid[b-zvh3cmeots]  thead .col-width-draghandle {
+	cursor: col-resize;
+	width: 3px;
+}
+
+	.grid[b-zvh3cmeots]  thead .col-width-draghandle:active {
+		background: unset;
+	}
+
+	.grid[b-zvh3cmeots]  thead .col-width-draghandle :after {
+		left: 3px;
+		border-left: unset;
+	}
+
+	.grid[b-zvh3cmeots]  thead .col-width-draghandle:hover {
+		background: unset;
+	}
+
+.grid[b-zvh3cmeots]  th {
+	background-color: #f4f5f9;
+	padding: 0.5rem;
+	display: table-cell;
+	vertical-align: inherit;
+	font-weight: bold;
+	border-bottom: 1px solid #e9eaed;
+}
+
+.grid[b-zvh3cmeots]  tr {
+	height: 1.8rem;
+}
+
+	.grid[b-zvh3cmeots]  tr:nth-child(even) {
+		background: #f4f5f9;
+	}
+
+	.grid[b-zvh3cmeots]  tr:nth-child(odd) {
+		background: #FFF;
+	}
+
+	.grid[b-zvh3cmeots]  tr:last-child > td {
+		border-bottom: none;
+	}
+
+.grid[b-zvh3cmeots]  td {
+	border-bottom: 1px solid #e9eaed;
+	color: #4f4f50;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 0.25rem 0.5rem;
+}
+
+	.grid[b-zvh3cmeots]  td:not(:last-child) {
+		border-right: 1px solid #e9eaed;
+	}
+
+.grid[b-zvh3cmeots]  .sort-indicator {
+	margin-left: auto;
+}
+
+.grid[b-zvh3cmeots]  .col-width-draghandle:after {
+	border-left: unset;
+}
+
+.grid[b-zvh3cmeots]  .col-title-text {
+	color: #262526;
+}
+
+.grid[b-zvh3cmeots]  .col-header-content {
+	padding-right: 0px;
+}
+
+.grid[b-zvh3cmeots]  button.col-title:active, .grid[b-zvh3cmeots]  .col-options-button:active {
+	background-color: unset;
+}
+
+.grid[b-zvh3cmeots]  button.col-title:hover, .grid[b-zvh3cmeots]  .col-options-button:hover {
+	background-color: unset;
+}

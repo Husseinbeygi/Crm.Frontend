@@ -24,4 +24,10 @@
     <Folder Include="Shared\Layouts\Rtl\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\apps\Leads\Leads.csproj" />
+    <ProjectReference Include="..\Shared\Framework.Components\Framework.Components\Framework.Components.csproj" />
+    <ProjectReference Include="..\Shared\Resources\Resources.csproj" />
+  </ItemGroup>
+
 </Project>

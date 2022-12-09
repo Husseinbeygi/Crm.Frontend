@@ -1,7 +1,9 @@
-﻿@using Crm.FrontEnd.Blazor.Shared.Layouts.Ltr;
+﻿@using Crm.FrontEnd.Blazor.Shared
+@using Crm.FrontEnd.Blazor.Shared.Layouts.Ltr;
 
 <CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly"
+            AdditionalAssemblies="new[] { typeof(Leads.Pages.Leads).Assembly}">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>

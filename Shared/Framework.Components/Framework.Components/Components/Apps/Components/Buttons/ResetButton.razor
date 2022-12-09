@@ -1,0 +1,9 @@
+﻿<BitButton ButtonStyle="BitButtonStyle.Standard" IsEnabled="true" OnClick="OnClick">
+    Reset
+</BitButton>
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+}

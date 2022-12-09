@@ -8,3 +8,7 @@
 /Crm.FrontEnd.Blazor/bin/Debug/net7.0
 /Crm.FrontEnd.Blazor/obj
 /Crm.FrontEnd.Blazor/wwwroot/libs/bootstrap-icons/icons
+/Shared/Framework.Components/Framework.Components/bin/Debug/net7.0
+/Shared/Framework.Components/Framework.Components/obj
+/Shared/Resources/bin/Debug/net7.0
+/Shared/Resources/obj

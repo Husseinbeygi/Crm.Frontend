@@ -1,0 +1,17 @@
+﻿<BitActionButton IsEnabled="false" IconName="BitIconName.ExcelLogo"></BitActionButton>
+<BitActionButton IconName="BitIconName.Remove" OnClick="OnDeleteClick"></BitActionButton>
+<BitActionButton IconName="BitIconName.Edit" OnClick="OnEditClick"></BitActionButton>
+<BitActionButton IconName="BitIconName.Add" OnClick="OnAddClick"></BitActionButton>
+
+@code {
+
+	[Parameter]
+	public EventCallback OnAddClick { get; set; }
+
+	[Parameter]
+	public EventCallback OnDeleteClick { get; set; }
+
+	[Parameter]
+	public EventCallback OnEditClick { get; set; }
+
+}
