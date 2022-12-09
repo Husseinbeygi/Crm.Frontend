@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inject NavigationManager Navigation
+@inject SignOutSessionStateManager SignOutManager
+
+<AuthorizeView>
+	<Authorized>
+		<div class="col-1 p-3 mb-5  rounded-5">
+			<div class="dropdown">
+				<img style="padding:0" class="btn dropdown-toggle img-responsive rounded-circle"
+					 src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/persona-female.png"
+					 id="profileDropdown"
+					 data-bs-toggle="dropdown"
+					 aria-expanded="false"
+					 data-toggle="dropdown"
+					 height="50"
+					 width="50">
+
+				<ul class="dropdown-menu" aria-labelledby="profileDropdown">
+					<li style="pointer-events:none">
+						<p class="dropdown-item">
+							@(@context.User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Name)?.Value)
+						</p>
+					</li>
+					<li><hr class="dropdown-divider"></li>
+					<li><a class="dropdown-item" href="#">Settings</a></li>
+					<li><a class="dropdown-item" href="#">Support</a></li>
+					<li><hr class="dropdown-divider"></li>
+					<li><button @onclick="BeginSignOut" class="dropdown-item">Logout</button></li>
+				</ul>
+
+			</div>
+		</div>
+
+	</Authorized>
+	<NotAuthorized>
+		@{
+			Navigation.NavigateTo($"authentication/login");
+		}
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+	private async Task BeginSignOut(MouseEventArgs args)
+	{
+		await SignOutManager.SetSignOutState();
+		Navigation.NavigateTo("authentication/logout");
+	}
+}
