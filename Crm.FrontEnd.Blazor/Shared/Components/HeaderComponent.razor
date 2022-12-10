@@ -1,5 +1,5 @@
 ﻿@inject NavigationManager navigationManager
-
+@using AntDesign;
 <div class="container">
 	<div class="row pt-3">
 		<div class="col-1 p-3 mb-5  rounded-5">
@@ -11,26 +11,50 @@
 		<div class="col-10 shadow-sm p-3 mb-5 rounded header-bg-color">
 			<div class="row">
 				<div class="col-1 text-center">
-					<BitIconButton OnClick="NavToHome" IconName="BitIconName.WaffleOffice365" Style="font-size:2rem;margin: .5rem 1rem;" AriaHidden="true" />
+					<button @onclick="NavToHome" type="button" class="btn btn-light"
+	   style="font-size:1.5rem !important;background-color: #B8FFF9;vertical-align:sub">
+						<i class="bi bi-x-diamond-fill"></i>
+					</button>
 				</div>
 				<div class="col-10 text-center">
 					@if (_toggleSearch)
 					{
-						<BitTextField Class="mt-2" Placeholder="@(Resources.DataDictionary.SearchPlaceholder)"></BitTextField>
+						<Search Class="mt-2" Placeholder="@(Resources.DataDictionary.SearchPlaceholder)" WrapperStyle="width: 100%;" ClassicSearchIcon />
 					}
 					else
 					{
-						<BitMenuButton OnClick="NavToLeads" Class="mt-2" Text="Leads" IconName="BitIconName.SchoolDataSyncLogo" ButtonStyle="BitButtonStyle.Standard" />
-						<BitMenuButton Class="mt-2" Text="Contacts" IconName="BitIconName.Add" ButtonStyle="BitButtonStyle.Standard" />
-						<BitMenuButton Class="mt-2" Text="Accounts" IconName="BitIconName.Add" ButtonStyle="BitButtonStyle.Standard" />
-						<BitMenuButton Class="mt-2" Text="Leads" IconName="BitIconName.Add" ButtonStyle="BitButtonStyle.Standard" />
-						<BitMenuButton Class="mt-2" Text="Leads" IconName="BitIconName.Add" ButtonStyle="BitButtonStyle.Standard" />
-						<BitMenuButton Class="mt-2" Text="Leads" IconName="BitIconName.Add" ButtonStyle="BitButtonStyle.Standard" />
+						<Menu Mode=MenuMode.Horizontal Style="background-color: #B8FFF9;text-align:center">
+							<MenuItem Key="mail" OnClick="NavToLeads">
+								@(Resources.DataDictionary.Leads)
+							</MenuItem>
+							<MenuItem Key="mail" OnClick="NavToLeads">
+								@(Resources.DataDictionary.Contacts)
+							</MenuItem>
+							<MenuItem Key="mail" OnClick="NavToLeads">
+								@(Resources.DataDictionary.Accounts)
+							</MenuItem>
+							<MenuItem Key="mail" OnClick="NavToLeads">
+								@(Resources.DataDictionary.Opportunity)
+							</MenuItem>
+							<MenuItem Key="mail" OnClick="NavToLeads">
+								@(Resources.DataDictionary.Tasks)
+							</MenuItem>
+							<MenuItem Key="mail" OnClick="NavToLeads">
+								@(Resources.DataDictionary.Cases)
+							</MenuItem>
+							<MenuItem Key="mail" OnClick="NavToLeads">
+								@(Resources.DataDictionary.Campaigns)
+							</MenuItem>
+
+						</Menu>
 					}
 
 				</div>
 				<div class="col-1 text-center">
-					<BitIconButton OnClick="ToggleSearchText" IconName="BitIconName.Search" Style="font-size:1rem;margin-top: 0.35rem;" AriaHidden="true" />
+					<Button Type="@ButtonType.Text"
+						   Icon="@IconType.Outline.Search"
+						   OnClick="ToggleSearchText"
+						   Style="font-size:1rem;margin-top: 0.35rem;" />
 				</div>
 
 			</div>

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Accounts" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="Administrator" xml:space="preserve">
     <value>Administrator</value>
   </data>
@@ -137,6 +146,12 @@
   </data>
   <data name="Biotechnology" xml:space="preserve">
     <value>Biotechnology</value>
+  </data>
+  <data name="Campaigns" xml:space="preserve">
+    <value>Campaigns</value>
+  </data>
+  <data name="Cases" xml:space="preserve">
+    <value>Cases</value>
   </data>
   <data name="Chemicals" xml:space="preserve">
     <value>Chemicals</value>
@@ -165,6 +180,9 @@
   <data name="Contacted" xml:space="preserve">
     <value>Contacted</value>
   </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
   <data name="Count" xml:space="preserve">
     <value>Count</value>
   </data>
@@ -185,6 +203,9 @@
   </data>
   <data name="Doctor" xml:space="preserve">
     <value>Dr.</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Education" xml:space="preserve">
     <value>Education</value>
@@ -209,6 +230,9 @@
   </data>
   <data name="Environmental" xml:space="preserve">
     <value>Environmental</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
   </data>
   <data name="ExternalReferral" xml:space="preserve">
     <value>External Referral</value>
@@ -266,6 +290,9 @@
   </data>
   <data name="Lead" xml:space="preserve">
     <value>Lead</value>
+  </data>
+  <data name="Leads" xml:space="preserve">
+    <value>Leads</value>
   </data>
   <data name="LeadSource" xml:space="preserve">
     <value>Lead Source</value>
@@ -327,8 +354,14 @@
   <data name="OnSite" xml:space="preserve">
     <value>On Site</value>
   </data>
+  <data name="Opportunity" xml:space="preserve">
+    <value>Opportunity</value>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>Other</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>Owner</value>
   </data>
   <data name="PackageName" xml:space="preserve">
     <value>Package Name</value>
@@ -363,6 +396,9 @@
   <data name="Recreation" xml:space="preserve">
     <value>Recreation</value>
   </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
   <data name="Retail" xml:space="preserve">
     <value>Retail</value>
   </data>
@@ -390,11 +426,17 @@
   <data name="Support" xml:space="preserve">
     <value>Support</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
   <data name="Technology" xml:space="preserve">
     <value>Technology</value>
   </data>
   <data name="Telecommunications" xml:space="preserve">
     <value>Telecommunications</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Today</value>

@@ -1,8 +1,18 @@
-﻿<BitActionButton IsEnabled="false" IconName="BitIconName.ExcelLogo"></BitActionButton>
-<BitActionButton IconName="BitIconName.Remove" OnClick="OnDeleteClick"></BitActionButton>
-<BitActionButton IconName="BitIconName.Edit" OnClick="OnEditClick"></BitActionButton>
-<BitActionButton IconName="BitIconName.Add" OnClick="OnAddClick"></BitActionButton>
-<BitActionButton IconName="BitIconName.Refresh" OnClick="OnRefreshClick"></BitActionButton>
+﻿<Tooltip Title="@(Resources.DataDictionary.Export)">
+	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Export" OnClick="OnDeleteClick" />
+</Tooltip>
+
+<Tooltip Title="@(Resources.DataDictionary.Edit)">
+	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Edit" OnClick="OnEditClick" />
+</Tooltip>
+
+<Tooltip Title="@(Resources.DataDictionary.Add)">
+	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Plus" OnClick="OnAddClick" />
+</Tooltip>
+
+<Tooltip Title="@(Resources.DataDictionary.Reload)">
+	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Reload" OnClick="OnRefreshClick" />
+</Tooltip>
 
 @code {
 

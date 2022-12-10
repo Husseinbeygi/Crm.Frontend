@@ -1,4 +1,4 @@
-﻿<BitModal @bind-IsOpen=IsOpen>
+﻿@*<BitModal @bind-IsOpen=IsOpen>
     <div class="modal-header mx-5 mt-4">
         <span>@(ModalTitle)</span>
         <BitIconButton OnClick="OnClose" IconName="BitIconName.ChromeClose" Title="Close" />
@@ -22,3 +22,4 @@
     public string ModalTitle { get; set; }
 
 }
+*@

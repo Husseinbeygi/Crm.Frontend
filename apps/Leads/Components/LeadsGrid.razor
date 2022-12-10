@@ -1,64 +1,54 @@
 ﻿@inject Services.LeadsService _leadService
-
+@using AntDesign;
+@using System.Threading;
 
 
 <LoadingComponent Enabled="_isloading">
-	<div class="grid">
-		<div class="grid-container">
-			<BitDataGrid Items="@FilteredItems" ResizableColumns="true" Pagination="@pagination">
+	@*	<div class="grid">
+	<div class="grid-container">
+	*@
 
-				<BitDataGridPropertyColumn Title="#"
-			 Property="@(c => c.RowNumber)"
-			 Sortable="true"
-			 IsDefaultSort="BitDataGridSortDirection.Ascending">
-				</BitDataGridPropertyColumn>
+	<Table TItem="Models.LeadsViewModel" DataSource="Leads" Total="Leads.Count()">
+		<Selection Align="ColumnAlign.Center" Fixed="_checkboxFix" Key="@(context.Id.ToString())" />
+			<ActionColumn Title="#">
+				<Space>
+				<SpaceItem>
+					<Button Type="@ButtonType.Text">@(context.RowNumber)</Button>
+				</SpaceItem>
+				</Space>
+			</ActionColumn>
+		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.FullName)" Property="c=>c.FullName" Sortable Filterable />
+		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Title)" Property="c=>c.Title" Sortable Filterable />
+		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Mobile)"  Property="c=>c.Mobile" Sortable Filterable />
+		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Indstry)" Property="c=>c.Industry.Name" Sortable Filterable />
+		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.LeadStatus)"  Property="c=>c.LeadStatus.Name" Sortable Filterable />
+		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.LeadSource)" Property="c=>c.LeadSource.Name" Sortable Filterable />
+		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Owner)" Property="c=>c.OwnerId" Sortable  Filterable />
+@*		<ActionColumn Title="@(Resources.DataDictionary.Action)" Width="100" Fixed="_actionFix">
+			<a>action</a>
+		</ActionColumn>*@
 
+	</Table>
 
-				<BitDataGridPropertyColumn Class="column--large"
-			 Title="@(Resources.DataDictionary.FullName)"
-			 Property="@(c => c.FullName)"
-			 Sortable="true"
-			 IsDefaultSort="BitDataGridSortDirection.Ascending">
-				</BitDataGridPropertyColumn>
-
-				<BitDataGridPropertyColumn Title="@(Resources.DataDictionary.Mobile)"
-			 Property="@(c => c.Mobile)"
-			 Sortable="true"
-			 IsDefaultSort="BitDataGridSortDirection.Ascending">
-				</BitDataGridPropertyColumn>
-
-				<BitDataGridPropertyColumn Title="@(Resources.DataDictionary.Indstry)"
-			 Property="@(c => c.Industry.Name)"
-			 Sortable="true"
-			 IsDefaultSort="BitDataGridSortDirection.Ascending">
-				</BitDataGridPropertyColumn>
-
-				<BitDataGridPropertyColumn Title="@(Resources.DataDictionary.LeadStatus)"
-			 Property="@(c => c.LeadStatus.Name)"
-			 Sortable="true"
-			 IsDefaultSort="BitDataGridSortDirection.Ascending">
-				</BitDataGridPropertyColumn>
-
-				<BitDataGridPropertyColumn Title="OwnerId"
-			 Property="@(c => c.OwnerId)"
-			 Sortable="true"
-			 IsDefaultSort="BitDataGridSortDirection.Ascending">
-				</BitDataGridPropertyColumn>
-
-			</BitDataGrid>
-		</div>
-		<BitDataGridPaginator Value="@pagination" />
-	</div>
+		@*				<PropertyColumn Property="c=>c.Summary" Sortable />
+		<ActionColumn>
+		<Space>
+		<SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">Delete</Button></SpaceItem>
+		</Space>
+		</ActionColumn>
+		*@
 </LoadingComponent>
 
 @code {
 	private bool _isloading;
-	public IQueryable<Models.LeadsViewModel> Leads { get; set; }
+	ColumnAlign columnAlign = ColumnAlign.Center;
+	string _checkboxFix = "left";
+	string _actionFix = "right";
+	public List<Models.LeadsViewModel> Leads { get; set; }
 
 	string fullnameFilter = string.Empty;
-	BitDataGridPaginationState pagination = new() { ItemsPerPage = 10 };
-	IQueryable<Models.LeadsViewModel> FilteredItems =>
-	Leads?.Where(x => x.FullName.Contains(fullnameFilter, StringComparison.CurrentCultureIgnoreCase));
+	List<Models.LeadsViewModel> FilteredItems =>
+	Leads?.Where(x => x.FullName.Contains(fullnameFilter, StringComparison.CurrentCultureIgnoreCase)).ToList();
 
 	List<Models.LeadsViewModel> _leadsViewModels = new();
 
@@ -67,15 +57,24 @@
 		_isloading = true;
 		await base.OnInitializedAsync();
 		await GetLeadsAsync();
+		AdjustRightToLeft();
 		_isloading = false;
+	}
+
+	public void AdjustRightToLeft()
+	{
+		if (Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+		{
+			string _checkboxFix = "right";
+			string _actionFix = "left";
+		}
 	}
 
 	public async Task GetLeadsAsync()
 	{
 
 		var _leadsResponse = await _leadService.GetAsync<Models.LeadResponse>("Leads");
-		_leadsViewModels = _leadsResponse.data;
-		Leads = _leadsViewModels.AsQueryable();
+		Leads = _leadsResponse.data;
 
 		int i = 1;
 		foreach (var item in Leads)

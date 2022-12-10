@@ -1,13 +1,16 @@
 ﻿@page "/leads"
 @using Leads.Components;
 
-<PageHeader OnAddClick="OpenModal" OnRefreshClick="Refresh">
-	<h3>Leads</h3>
-</PageHeader>
+
+<CustomPageHeader OnAddClick="OpenModal" OnRefreshClick="Refresh">
+
+	<h3>@(Resources.DataDictionary.Leads)</h3>
+
+</CustomPageHeader>
 
 <LeadsGrid @ref="_leadsGrid"></LeadsGrid>
 
-<PageModal IsOpen="isopen" OnClose="@(() => isopen = false)" ModalTitle="CreateLead">
+@*<PageModal IsOpen="isopen" OnClose="@(() => isopen = false)" ModalTitle="CreateLead">
 	<div class="row">
 		<div class="col-6">
 			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
@@ -37,6 +40,8 @@
 	</div>
 	<FormButtonGroup></FormButtonGroup>
 </PageModal>
+*@
+
 @code {
 
 	private  LeadsGrid? _leadsGrid;

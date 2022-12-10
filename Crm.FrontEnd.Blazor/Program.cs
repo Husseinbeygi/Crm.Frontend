@@ -29,7 +29,7 @@ builder.Services.AddSingleton
 	});
 
 
-//await builder.Build().RunAsync();
+builder.Services.AddAntDesign();
 
 builder.Services.AddLocalization();
 

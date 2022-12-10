@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Accounts" xml:space="preserve">
+    <value>شرکت ها</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>اضافه کردن</value>
+  </data>
   <data name="Administrator" xml:space="preserve">
     <value>مدیر</value>
   </data>
@@ -137,6 +146,12 @@
   </data>
   <data name="Biotechnology" xml:space="preserve">
     <value>بیوتکنولوژی</value>
+  </data>
+  <data name="Campaigns" xml:space="preserve">
+    <value>کارزارها</value>
+  </data>
+  <data name="Cases" xml:space="preserve">
+    <value>پرونده ها</value>
   </data>
   <data name="CellPhoneNumber" xml:space="preserve">
     <value>شماره تلفن همراه</value>
@@ -171,6 +186,9 @@
   <data name="Contacted" xml:space="preserve">
     <value>تماس گرفته شده</value>
   </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>اشخاص</value>
+  </data>
   <data name="Count" xml:space="preserve">
     <value>تعداد</value>
   </data>
@@ -191,6 +209,9 @@
   </data>
   <data name="Doctor" xml:space="preserve">
     <value>دکتر</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>ویرایش</value>
   </data>
   <data name="Education" xml:space="preserve">
     <value>تحصیلات</value>
@@ -215,6 +236,9 @@
   </data>
   <data name="Environmental" xml:space="preserve">
     <value>محیطی</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>خروجی</value>
   </data>
   <data name="ExternalReferral" xml:space="preserve">
     <value>مرسوم</value>
@@ -273,6 +297,9 @@
   <data name="Lead" xml:space="preserve">
     <value>سرنخ</value>
   </data>
+  <data name="Leads" xml:space="preserve">
+    <value>سرنخ های تجاری</value>
+  </data>
   <data name="LeadSource" xml:space="preserve">
     <value>ورودی سرنخ</value>
   </data>
@@ -330,8 +357,14 @@
   <data name="OnSite" xml:space="preserve">
     <value>در سایت</value>
   </data>
+  <data name="Opportunity" xml:space="preserve">
+    <value>فرصت های تجاری</value>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>دیگر</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>مالک</value>
   </data>
   <data name="PackageName" xml:space="preserve">
     <value>نام بسته</value>
@@ -366,6 +399,9 @@
   <data name="Recreation" xml:space="preserve">
     <value>تفریح</value>
   </data>
+  <data name="Reload" xml:space="preserve">
+    <value>بازیابی</value>
+  </data>
   <data name="Retail" xml:space="preserve">
     <value>خرده فروشی</value>
   </data>
@@ -393,11 +429,17 @@
   <data name="Support" xml:space="preserve">
     <value>پشتیبانی</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>وظایف</value>
+  </data>
   <data name="Technology" xml:space="preserve">
     <value>فن آوری</value>
   </data>
   <data name="Telecommunications" xml:space="preserve">
     <value>ارتباطات از راه دور</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>عنوان شغلی</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>امروز</value>

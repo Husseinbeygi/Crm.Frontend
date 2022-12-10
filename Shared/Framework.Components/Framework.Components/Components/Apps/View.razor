@@ -1,14 +1,16 @@
 ﻿<div style="direction:ltr">
-	<BitSplitButton Items="views"
-	 ButtonStyle="BitButtonStyle.Standard" />
+	<DropdownButton>
+		<Overlay>
+			<Menu>
+				<MenuItem Key="1">ALL</MenuItem>
+				<MenuItem Key="2">2nd item</MenuItem>
+				<MenuItem Key="3">3rd item</MenuItem>
+			</Menu>
+		</Overlay>
+		<Unbound>
+			Actions
+		</Unbound>
+	</DropdownButton>
 </div>
 @code {
-	private List<BitSplitButtonItem> views = new()
-	 {
-		 new BitSplitButtonItem()
-		 {
-			 Text = "All",
-			 key = "1"
-		 },
-	 };
 }
