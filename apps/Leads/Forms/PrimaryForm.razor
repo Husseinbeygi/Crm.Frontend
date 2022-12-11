@@ -1,0 +1,70 @@
+﻿
+<div class="row">
+	<div class="col-md-3">
+		<Card>
+			<TitleTemplate>
+				@(Resources.DataDictionary.Contact)
+			</TitleTemplate>
+
+			<Body>
+				<ContactForm Models="Model" />
+			</Body>
+		</Card>
+		<hr />
+		<Card>
+			<TitleTemplate>
+				@(Resources.DataDictionary.Account)
+			</TitleTemplate>
+			<Body>
+				<AccountForm Models="Model" />
+			</Body>
+		</Card>
+	</div>
+	<div class="col-md-6" dir="ltr">
+		<Card>
+			<CardTabs>
+				<Tabs DefaultActiveKey="1">
+					<ChildContent>
+						<TabPane Key="1">
+							<TabTemplate>@(Resources.DataDictionary.History)</TabTemplate>
+							<ChildContent>Content of Tab History</ChildContent>
+						</TabPane>
+						<TabPane Key="2">
+							<TabTemplate>@(Resources.DataDictionary.Activity)</TabTemplate>
+							<ChildContent>Content of Tab Activity</ChildContent>
+						</TabPane>
+						<TabPane Key="3">
+							<TabTemplate>@(Resources.DataDictionary.Notes)</TabTemplate>
+							<ChildContent>Content of Tab Notes</ChildContent>
+						</TabPane>
+					</ChildContent>
+				</Tabs>
+			</CardTabs>
+		</Card>
+	</div>
+	<div class="col-md-3">
+		<Card>
+			<TitleTemplate>
+				@(Resources.DataDictionary.Details)
+			</TitleTemplate>
+			<Body>
+				<DetailsForm Models="Model" />
+			</Body>
+		</Card>
+		<hr />
+		<Card>
+			<TitleTemplate>
+				@(Resources.DataDictionary.Address)
+			</TitleTemplate>
+			<Body>
+				<AddressForm Models="Model" />
+			</Body>
+		</Card>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public Models.CreateLeadViewModel Model { get; set; }
+
+}

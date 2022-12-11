@@ -16,10 +16,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Components\Forms\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\..\Shared\Framework.Components\Framework.Components\Framework.csproj" />
 	  <ProjectReference Include="..\..\Shared\Resources\Resources.csproj" />
 	</ItemGroup>

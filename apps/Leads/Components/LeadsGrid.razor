@@ -13,7 +13,7 @@
 			<ActionColumn Title="#">
 				<Space>
 				<SpaceItem>
-					<Button Type="@ButtonType.Text">@(context.RowNumber)</Button>
+					<Button Shape="@ButtonShape.Circle" Type="@ButtonType.Text" Style="background-color:#fafafafa">@(context.RowNumber)</Button>
 				</SpaceItem>
 				</Space>
 			</ActionColumn>
@@ -39,8 +39,8 @@
 		*@
 </LoadingComponent>
 
-@code {
-	private bool _isloading;
+	@code {
+	private bool _isloading = true;
 	ColumnAlign columnAlign = ColumnAlign.Center;
 	string _checkboxFix = "left";
 	string _actionFix = "right";
@@ -54,14 +54,14 @@
 
 	protected async override Task OnInitializedAsync()
 	{
-		_isloading = true;
+		//_isloading = true;
 		await base.OnInitializedAsync();
 		await GetLeadsAsync();
 		AdjustRightToLeft();
-		_isloading = false;
+		//_isloading = false;
 	}
 
-	public void AdjustRightToLeft()
+	private void AdjustRightToLeft()
 	{
 		if (Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
 		{
@@ -72,8 +72,10 @@
 
 	public async Task GetLeadsAsync()
 	{
+		_isloading = true;
 
 		var _leadsResponse = await _leadService.GetAsync<Models.LeadResponse>("Leads");
+		
 		Leads = _leadsResponse.data;
 
 		int i = 1;
@@ -81,6 +83,8 @@
 		{
 			item.RowNumber = i++;
 		}
+		_isloading = false;
+
 	}
 
 }

@@ -1,0 +1,63 @@
+﻿@page "/leads/create"
+
+
+<PageHeader BackIcon="true" Class="site-page-header" BackIconTemplate="icon">
+    <PageHeaderTitle>Title</PageHeaderTitle>
+    <PageHeaderSubtitle>This is a subtitle</PageHeaderSubtitle>
+    <PageHeaderExtra>
+        <Button>@(Resources.ButtonCaptions.Reset)</Button>
+            <Button HtmlType="submit" OnClick="Save" Type="@ButtonType.Primary">@(Resources.ButtonCaptions.Save)</Button>
+    </PageHeaderExtra>
+    <PageHeaderContent>
+        <Descriptions Size="small" Column="3">
+            <DescriptionsItem Title="Created" Span="1">Lili Qu</DescriptionsItem>
+            <DescriptionsItem Title="Association" Span="1"><a>421421</a></DescriptionsItem>
+            <DescriptionsItem Title="Creation Time" Span="1">2017-01-10</DescriptionsItem>
+            <DescriptionsItem Title="Effective Time" Span="1">2017-10-10</DescriptionsItem>
+            <DescriptionsItem Title="Remarks" Span="2">
+                Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
+            </DescriptionsItem>
+        </Descriptions>
+    </PageHeaderContent>
+</PageHeader>
+<div class="my-1">
+        <Segmented Block Labels=@(new[] {"Qualify ", "Develop", "Propose","Close"}) />
+
+</div>
+<div class="mt-2">
+    <Leads.Forms.PrimaryForm Model="createModel" />
+</div>
+
+@*<Collapse DefaultActiveKey="@(new[]{"1"})" Bordered="false">
+    <Panel Header="Primary" Key="1">
+    </Panel>
+    <Panel Header="Details" Key="2">
+        <Leads.Forms.DetailsForm />
+    </Panel>
+</Collapse>*@
+
+@code {
+    Models.CreateLeadViewModel createModel = new();
+
+    RenderFragment icon =@<Icon Type="arrow-left" />;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        AdjustRightToLeft();
+    }
+
+    private void AdjustRightToLeft()
+    {
+        if (Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+        {
+            icon =@<Icon Type="arrow-right" />;
+        }
+    }
+
+    private void Save()
+    {
+        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(createModel));
+    }
+
+}

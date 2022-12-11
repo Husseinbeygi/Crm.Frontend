@@ -1,0 +1,36 @@
+﻿<Form Model="Models"
+   LabelColSpan="8"
+   WrapperColSpan="16">
+
+	<FormItem Label="@(Resources.DataDictionary.Country)">
+		<Input @bind-Value="@context.Country" />
+	</FormItem>
+	<FormItem Label="@(Resources.DataDictionary.State)">
+		<Input @bind-Value="@context.State" />
+	</FormItem>
+	<FormItem Label="@(Resources.DataDictionary.Street)">
+		<Input @bind-Value="@context.Street" />
+	</FormItem>
+	<FormItem Label="@(Resources.DataDictionary.Address)">
+		<Input @bind-Value="@context.Address" />
+	</FormItem>
+	<FormItem Label="@(Resources.DataDictionary.PostalCode)">
+		<Input @bind-Value="@context.PostalCode" Type="email" />
+	</FormItem>
+</Form>
+
+@code {
+	[Parameter]
+	public Models.CreateLeadViewModel Models { get; set; }
+
+	int value = 1;
+	record Person(string Name);
+	private List<Person> _persons = new List<Person>
+		{
+			new Person("John"),
+			new Person("Lucy"),
+			new Person("Jack"),
+			new Person("Emily"),
+		};
+
+}

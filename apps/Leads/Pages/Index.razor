@@ -1,8 +1,9 @@
 ﻿@page "/leads"
 @using Leads.Components;
 
+@inject NavigationManager navigationManager
 
-<CustomPageHeader OnAddClick="OpenModal" OnRefreshClick="Refresh">
+<CustomPageHeader OnAddClick="NavigateToCreate" OnRefreshClick="Refresh">
 
 	<h3>@(Resources.DataDictionary.Leads)</h3>
 
@@ -50,9 +51,9 @@
 	private IQueryable<Models.LeadsViewModel> leads;
 
 	private bool isopen = false;
-	private void OpenModal()
+	private void NavigateToCreate()
 	{
-		isopen = true;
+		navigationManager.NavigateTo("/leads/create");
 	}
 
 	private async Task Refresh()

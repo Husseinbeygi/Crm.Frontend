@@ -117,14 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>شرکت</value>
+  </data>
   <data name="Accounts" xml:space="preserve">
     <value>شرکت ها</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>عملیات</value>
   </data>
+  <data name="Activity" xml:space="preserve">
+    <value>فعالیت ها</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>اضافه کردن</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>نشانی</value>
   </data>
   <data name="Administrator" xml:space="preserve">
     <value>مدیر</value>
@@ -137,6 +146,9 @@
   </data>
   <data name="Agriculture" xml:space="preserve">
     <value>کشاورزی</value>
+  </data>
+  <data name="AnnualRevenue" xml:space="preserve">
+    <value>درآمد سالانه</value>
   </data>
   <data name="Apparel" xml:space="preserve">
     <value>پوشاک</value>
@@ -183,6 +195,9 @@
   <data name="Consulting" xml:space="preserve">
     <value>مشاوره</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>شخص</value>
+  </data>
   <data name="Contacted" xml:space="preserve">
     <value>تماس گرفته شده</value>
   </data>
@@ -192,6 +207,9 @@
   <data name="Count" xml:space="preserve">
     <value>تعداد</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
   <data name="CurrentDate" xml:space="preserve">
     <value>تاریخ جاری</value>
   </data>
@@ -200,6 +218,9 @@
   </data>
   <data name="Date" xml:space="preserve">
     <value>تاریخ</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>جزئیات</value>
   </data>
   <data name="DiscountCoupon" xml:space="preserve">
     <value>کوپن تخفیف</value>
@@ -267,6 +288,9 @@
   <data name="Healthcare" xml:space="preserve">
     <value>مراقبت های بهداشتی</value>
   </data>
+  <data name="History" xml:space="preserve">
+    <value>تاریخچه</value>
+  </data>
   <data name="Hospitality" xml:space="preserve">
     <value>مهمانداری</value>
   </data>
@@ -305,6 +329,9 @@
   </data>
   <data name="LeadStatus" xml:space="preserve">
     <value>وضعیت سرنخ</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>در حال بارگذاری</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>خروج از سیستم</value>
@@ -351,8 +378,14 @@
   <data name="None" xml:space="preserve">
     <value>هیچ</value>
   </data>
+  <data name="Notes" xml:space="preserve">
+    <value>یادداشت ها</value>
+  </data>
   <data name="NotForProfit" xml:space="preserve">
     <value>غیر انتفاعی</value>
+  </data>
+  <data name="NumberOfEmployees" xml:space="preserve">
+    <value>تعداد کارمندان</value>
   </data>
   <data name="OnSite" xml:space="preserve">
     <value>در سایت</value>
@@ -374,6 +407,12 @@
   </data>
   <data name="Percent" xml:space="preserve">
     <value>درصد</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>تلفن</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>کد پستی</value>
   </data>
   <data name="ProductName" xml:space="preserve">
     <value>نام محصول</value>
@@ -422,6 +461,12 @@
   </data>
   <data name="Social" xml:space="preserve">
     <value>اجتماعی</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>شهر</value>
   </data>
   <data name="Supervisor" xml:space="preserve">
     <value>مسئول</value>
