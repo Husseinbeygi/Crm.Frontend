@@ -1,4 +1,7 @@
-﻿<Form Model="Models"
+﻿@using Leads.Models.Leads;
+
+
+<Form Model="Models"
    LabelColSpan="8"
    WrapperColSpan="16">
 
@@ -21,7 +24,7 @@
 
 @code {
 	[Parameter]
-	public Models.CreateLeadViewModel Models { get; set; }
+	public CreateLeadViewModel Models { get; set; }
 
 	int value = 1;
 	record Person(string Name);

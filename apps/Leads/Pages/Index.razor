@@ -1,5 +1,6 @@
 ﻿@page "/leads"
 @using Leads.Components;
+@using Leads.Models.Leads;
 
 @inject NavigationManager navigationManager
 
@@ -11,44 +12,13 @@
 
 <LeadsGrid @ref="_leadsGrid"></LeadsGrid>
 
-@*<PageModal IsOpen="isopen" OnClose="@(() => isopen = false)" ModalTitle="CreateLead">
-	<div class="row">
-		<div class="col-6">
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-
-		</div>
-		<div class="col-6">
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-			<BitTextField Label="Standard With Two-Way Binding" @bind-Value="@TextValue"></BitTextField>
-		</div>
-	</div>
-	<FormButtonGroup></FormButtonGroup>
-</PageModal>
-*@
 
 @code {
 
 	private  LeadsGrid? _leadsGrid;
 
 	private string TextValue;
-	private IQueryable<Models.LeadsViewModel> leads;
+	private IQueryable<LeadsViewModel> leads;
 
 	private bool isopen = false;
 	private void NavigateToCreate()

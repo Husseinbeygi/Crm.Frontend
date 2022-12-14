@@ -1,4 +1,8 @@
-﻿<Form Model="Models"
+﻿@using Leads.Models.Leads;
+@using Models.ValueObjects;
+
+
+<Form Model="Models"
    LabelColSpan="8"
    WrapperColSpan="16">
 	<FormItem Label="@(Resources.DataDictionary.CompanyName)">
@@ -9,10 +13,10 @@
 	</FormItem>
 	<FormItem Label="@(Resources.DataDictionary.Indstry)">
 		<Select Mode="default"
-	DataSource="_persons"
-		@bind-Value="@context.Industry.Name"
-	LabelName="@nameof(Person.Name)"
-	ValueName="@nameof(Person.Name)">
+	DataSource="_industry"
+		@bind-Value="@context.Industry.Value"
+	LabelName="@nameof(ValueObject.Name)"
+	ValueName="@nameof(ValueObject.Value)">
 		</Select>
 	</FormItem>
 	<FormItem Label="@(Resources.DataDictionary.PhoneNumber)">
@@ -32,16 +36,18 @@
 
 @code {
 	[Parameter]
-	public Models.CreateLeadViewModel Models { get; set; }
+	public CreateLeadViewModel Models { get; set; }
 
-	int value = 1;
-	record Person(string Name);
-	private List<Person> _persons = new List<Person>
-		{
-			new Person("A"),
-			new Person("B"),
-			new Person("C"),
-			new Person("D"),
-		};
+	[Parameter]
+	public Models.ValueObjects.Options Options { get; set; }
 
+
+	List<Models.ValueObjects.ValueObject> _industry = new();
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		_industry = Options.industry;
+
+	}
 }

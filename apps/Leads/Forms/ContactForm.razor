@@ -1,12 +1,16 @@
-﻿<Form Model="Models"
+﻿@using Leads.Models.Leads;
+@using Models.ValueObjects;
+
+
+<Form Model="Models"
    LabelColSpan="8"
    WrapperColSpan="16">
 	<FormItem Label="@(Resources.DataDictionary.Salutation)">
 		<Select Mode="default"
-	DataSource="_persons"
-		@bind-Value="@context.Salutaion.Name"
-	LabelName="@nameof(Person.Name)"
-	ValueName="@nameof(Person.Name)">
+	DataSource="_salutation"
+		@bind-Value="@context.Salutaion.Value"
+	LabelName="@nameof(ValueObject.Name)"
+	ValueName="@nameof(ValueObject.Value)">
 		</Select>
 	</FormItem>
 
@@ -29,16 +33,18 @@
 
 @code {
 	[Parameter]
-	public Models.CreateLeadViewModel Models { get; set; }
+	public CreateLeadViewModel Models { get; set; }
 
-	int value = 1;
-	record Person(string Name);
-	private List<Person> _persons = new List<Person>
-		{
-			new Person("John"),
-			new Person("Lucy"),
-			new Person("Jack"),
-			new Person("Emily"),
-		};
+	[Parameter]
+	public Models.ValueObjects.Options Options { get; set; }
+
+	List<Models.ValueObjects.ValueObject> _salutation = new();
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		_salutation = Options.salutation;
+
+	}
 
 }

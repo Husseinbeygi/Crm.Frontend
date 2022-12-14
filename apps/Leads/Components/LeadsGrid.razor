@@ -1,6 +1,7 @@
 ﻿@inject Services.LeadsService _leadService
 @using AntDesign;
 @using System.Threading;
+@using Leads.Models.Leads;
 
 
 <LoadingComponent Enabled="_isloading">
@@ -8,7 +9,7 @@
 	<div class="grid-container">
 	*@
 
-	<Table TItem="Models.LeadsViewModel" DataSource="Leads" Total="Leads.Count()">
+	<Table TItem="LeadsViewModel" DataSource="Leads" Total="Leads.Count()">
 		<Selection Align="ColumnAlign.Center" Fixed="_checkboxFix" Key="@(context.Id.ToString())" />
 			<ActionColumn Title="#">
 				<Space>
@@ -44,13 +45,13 @@
 	ColumnAlign columnAlign = ColumnAlign.Center;
 	string _checkboxFix = "left";
 	string _actionFix = "right";
-	public List<Models.LeadsViewModel> Leads { get; set; }
+	public List<LeadsViewModel> Leads { get; set; }
 
 	string fullnameFilter = string.Empty;
-	List<Models.LeadsViewModel> FilteredItems =>
+	List<LeadsViewModel> FilteredItems =>
 	Leads?.Where(x => x.FullName.Contains(fullnameFilter, StringComparison.CurrentCultureIgnoreCase)).ToList();
 
-	List<Models.LeadsViewModel> _leadsViewModels = new();
+	List<LeadsViewModel> _leadsViewModels = new();
 
 	protected async override Task OnInitializedAsync()
 	{
@@ -74,8 +75,8 @@
 	{
 		_isloading = true;
 
-		var _leadsResponse = await _leadService.GetAsync<Models.LeadResponse>("Leads");
-		
+		var _leadsResponse = await _leadService.GetAsync<Models.ListResponse<Leads.Models.Leads.LeadsViewModel>>("Leads");
+		Console.WriteLine(_leadsResponse);
 		Leads = _leadsResponse.data;
 
 		int i = 1;

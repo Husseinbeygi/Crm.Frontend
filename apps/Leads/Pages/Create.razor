@@ -1,63 +1,79 @@
 ﻿@page "/leads/create"
 
+@using Leads.Models.Leads;
 
-<PageHeader BackIcon="true" Class="site-page-header" BackIconTemplate="icon">
-    <PageHeaderTitle>Title</PageHeaderTitle>
-    <PageHeaderSubtitle>This is a subtitle</PageHeaderSubtitle>
-    <PageHeaderExtra>
-        <Button>@(Resources.ButtonCaptions.Reset)</Button>
-            <Button HtmlType="submit" OnClick="Save" Type="@ButtonType.Primary">@(Resources.ButtonCaptions.Save)</Button>
-    </PageHeaderExtra>
-    <PageHeaderContent>
-        <Descriptions Size="small" Column="3">
-            <DescriptionsItem Title="Created" Span="1">Lili Qu</DescriptionsItem>
-            <DescriptionsItem Title="Association" Span="1"><a>421421</a></DescriptionsItem>
-            <DescriptionsItem Title="Creation Time" Span="1">2017-01-10</DescriptionsItem>
-            <DescriptionsItem Title="Effective Time" Span="1">2017-10-10</DescriptionsItem>
-            <DescriptionsItem Title="Remarks" Span="2">
-                Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
-            </DescriptionsItem>
-        </Descriptions>
-    </PageHeaderContent>
-</PageHeader>
-<div class="my-1">
-        <Segmented Block Labels=@(new[] {"Qualify ", "Develop", "Propose","Close"}) />
+@inject Services.LeadsService _leadService
 
-</div>
-<div class="mt-2">
-    <Leads.Forms.PrimaryForm Model="createModel" />
-</div>
+<LoadingComponent Enabled="_isloading">
+	<PageHeader BackIcon="true" Class="site-page-header" BackIconTemplate="icon">
+		<PageHeaderTitle>Title</PageHeaderTitle>
+		<PageHeaderSubtitle>This is a subtitle</PageHeaderSubtitle>
+		<PageHeaderExtra>
+			<Button>@(Resources.ButtonCaptions.Reset)</Button>
+				<Button HtmlType="submit" OnClick="Save" Type="@ButtonType.Primary">@(Resources.ButtonCaptions.Save)</Button>
+			</PageHeaderExtra>
+			<PageHeaderContent>
+				<Descriptions Size="small" Column="3">
+					<DescriptionsItem Title="Created" Span="1">Lili Qu</DescriptionsItem>
+					<DescriptionsItem Title="Association" Span="1"><a>421421</a></DescriptionsItem>
+					<DescriptionsItem Title="Creation Time" Span="1">2017-01-10</DescriptionsItem>
+					<DescriptionsItem Title="Effective Time" Span="1">2017-10-10</DescriptionsItem>
+					<DescriptionsItem Title="Remarks" Span="2">
+						Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
+					</DescriptionsItem>
+				</Descriptions>
+			</PageHeaderContent>
+		</PageHeader>
+		<div class="my-1">
+			<Segmented Block Labels=@(_segmentdStatus) />
+		</div>
+		<div class="mt-2">
+			<Leads.Forms.PrimaryForm Model="createModel" Options="Options" />
+		</div>
+	</LoadingComponent>
 
-@*<Collapse DefaultActiveKey="@(new[]{"1"})" Bordered="false">
-    <Panel Header="Primary" Key="1">
-    </Panel>
-    <Panel Header="Details" Key="2">
-        <Leads.Forms.DetailsForm />
-    </Panel>
-</Collapse>*@
+	@code {
+	private bool _isloading = true;
+	private List<string> _segmentdStatus = new();
 
-@code {
-    Models.CreateLeadViewModel createModel = new();
+	CreateLeadViewModel createModel = new();
 
-    RenderFragment icon =@<Icon Type="arrow-left" />;
+	Leads.Models.ValueObjects.Options Options = new();
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        AdjustRightToLeft();
-    }
+	RenderFragment icon =@<Icon Type="arrow-left" />;
 
-    private void AdjustRightToLeft()
-    {
-        if (Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-        {
-            icon =@<Icon Type="arrow-right" />;
-        }
-    }
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+		AdjustRightToLeft();
+		await GetLeadOptions();
+	}
 
-    private void Save()
-    {
-        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(createModel));
-    }
+	private async Task GetLeadOptions()
+	{
+		_isloading = true;
+
+		Options = (await _leadService.GetAsync<Models.Response<Leads.Models.ValueObjects.Options>>("Leads/options")).data;
+
+		foreach (var item in Options.leadStatus)
+		{
+			_segmentdStatus.Add(item.Name);
+		}
+
+		_isloading = false;
+	}
+
+	private void AdjustRightToLeft()
+	{
+		if (Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+		{
+			icon =@<Icon Type="arrow-right" />;
+		}
+	}
+
+	private void Save()
+	{
+		Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(createModel));
+	}
 
 }

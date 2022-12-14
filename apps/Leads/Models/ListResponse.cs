@@ -1,8 +1,8 @@
 ﻿namespace Leads.Models
 {
-	public class LeadResponse
+	public class ListResponse<T>
 	{
-		public List<LeadsViewModel> data { get; set; }
+		public List<T> data { get; set; }
 		public int count { get; set; }
 		public int page { get; set; }
 		public bool hasNextPage { get; set; }
