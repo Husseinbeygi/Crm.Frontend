@@ -1,7 +1,9 @@
 ﻿@using Leads.Models.Leads;
 
 
-<Form Model="Models"
+<Form @ref="form" 
+   Model="Models"
+   OnFinish="(() => Submit())"
    LabelColSpan="8"
    WrapperColSpan="16">
 
@@ -26,14 +28,16 @@
 	[Parameter]
 	public CreateLeadViewModel Models { get; set; }
 
-	int value = 1;
-	record Person(string Name);
-	private List<Person> _persons = new List<Person>
-		{
-			new Person("John"),
-			new Person("Lucy"),
-			new Person("Jack"),
-			new Person("Emily"),
-		};
+	private Form<Models.Leads.CreateLeadViewModel> form;
 
+	public void Validate()
+	{
+		form.Validate();
+	}
+
+
+	public bool Submit()
+	{
+		return true;
+	}
 }

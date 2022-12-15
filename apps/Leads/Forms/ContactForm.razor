@@ -2,8 +2,9 @@
 @using Models.ValueObjects;
 
 
-<Form Model="Models"
+<Form @ref="_contactForm" Model="Models"
    LabelColSpan="8"
+   OnFinish="(() => Submit())"
    WrapperColSpan="16">
 	<FormItem Label="@(Resources.DataDictionary.Salutation)">
 		<Select Mode="default"
@@ -40,11 +41,23 @@
 
 	List<Models.ValueObjects.ValueObject> _salutation = new();
 
+	private Form<Models.Leads.CreateLeadViewModel> _contactForm;
+
 	protected override void OnInitialized()
 	{
 		base.OnInitialized();
 		_salutation = Options.salutation;
 
+	}
+
+	public void Validate()
+	{
+		_contactForm.Validate();
+	}
+
+	public bool Submit()
+	{
+		return true;
 	}
 
 }

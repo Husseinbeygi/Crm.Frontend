@@ -1,9 +1,13 @@
 ﻿@using Crm.FrontEnd.Blazor.Shared
-@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Framework.HttpServices;
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Authentication
+
 @inject IJSRuntime JS
 @inject NavigationManager Navigation
-
-
+@inject TokenProvider tokenProvider
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IHttpContextAccessor httpContextAccessor
 
 <CascadingAuthenticationState>
 	<Router AppAssembly="@typeof(Program).Assembly"
@@ -12,8 +16,8 @@
 
 			@if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
 			{
-				<AuthorizeRouteView RouteData="@routeData" 
-					DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Rtl.RtlMainLayout)">
+				<AuthorizeRouteView RouteData="@routeData"
+			DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Rtl.RtlMainLayout)">
 					<NotAuthorized>
 						@if (context?.User?.Identity?.IsAuthenticated == false)
 						{
@@ -30,8 +34,8 @@
 			}
 			else
 			{
-				<AuthorizeRouteView RouteData="@routeData" 
-					DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Ltr.LtrMainLayout)">
+				<AuthorizeRouteView RouteData="@routeData"
+			DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Ltr.LtrMainLayout)">
 					<NotAuthorized>
 						@if (context?.User?.Identity?.IsAuthenticated == false)
 						{
@@ -89,4 +93,5 @@
 			Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
 		}
 	}
+
 }

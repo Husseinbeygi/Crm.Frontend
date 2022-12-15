@@ -1,4 +1,5 @@
 ﻿@using Leads.Models.Leads;
+<Spin Tip="@(string.Concat(Resources.DataDictionary.Loading,"..."))" Spinning="Enabled">
 
 <div class="row">
 	<div class="col-md-3">
@@ -8,7 +9,7 @@
 			</TitleTemplate>
 
 			<Body>
-				<ContactForm Models="Model" Options="Options"  />
+				<ContactForm @ref="_contactForm" Models="Model" Options="Options" />
 			</Body>
 		</Card>
 		<hr />
@@ -17,7 +18,7 @@
 				@(Resources.DataDictionary.Account)
 			</TitleTemplate>
 			<Body>
-				<AccountForm Models="Model" Options="Options" />
+				<AccountForm @ref="_accountForm" Models="Model" Options="Options" />
 			</Body>
 		</Card>
 	</div>
@@ -49,7 +50,7 @@
 				@(Resources.DataDictionary.Details)
 			</TitleTemplate>
 			<Body>
-				<DetailsForm Models="Model" Options="Options" />
+				<DetailsForm @ref="_detailsForm" Models="Model" Options="Options" />
 			</Body>
 		</Card>
 		<hr />
@@ -58,16 +59,45 @@
 				@(Resources.DataDictionary.Address)
 			</TitleTemplate>
 			<Body>
-				<AddressForm Models="Model" />
+				<AddressForm @ref="_addressForm" Models="Model" />
 			</Body>
 		</Card>
 	</div>
 </div>
 
+</Spin>
 @code {
 	[Parameter]
 	public CreateLeadViewModel Model { get; set; }
 
 	[Parameter]
 	public Models.ValueObjects.Options Options { get; set; }
+
+	public AccountForm? _accountForm { get; set; }
+
+	public ContactForm? _contactForm { get; set; }
+
+	public DetailsForm? _detailsForm { get; set; }
+
+	public AddressForm? _addressForm { get; set; }
+
+
+	[Parameter]
+	public bool Enabled { get; set; }
+
+
+	public void ValidateForms()
+	{
+		_addressForm?.Validate();
+		_contactForm?.Validate();
+		_accountForm?.Validate();
+	}
+
+	public bool IsModelValid()
+	{
+		return _detailsForm.Submit() &&
+				_accountForm.Submit() &&
+				_addressForm.Submit() &&
+				_detailsForm.Submit();
+	}
 }

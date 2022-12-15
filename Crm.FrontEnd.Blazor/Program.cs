@@ -3,23 +3,20 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using System.Globalization;
 using Microsoft.JSInterop;
+using Microsoft.AspNetCore.Http;
+using Framework.HttpServices;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
-
-builder.Services.AddTransient(sp => new HttpClient 
-{
-	BaseAddress = 
-		new Uri(builder.HostEnvironment.BaseAddress) 
-});
 
 builder.Services.AddOidcAuthentication(options =>
 {
 	builder.Configuration.Bind("LocalSSO", options.ProviderOptions);
 });
 
-builder.Services.AddSingleton<Leads.Services.LeadsService>();
+builder.Services.AddScoped<Leads.Services.LeadsService>();
+
 
 builder.Services.AddSingleton
 	(current => new System.Net.Http.HttpClient
@@ -28,6 +25,9 @@ builder.Services.AddSingleton
 			new System.Uri(builder.HostEnvironment.BaseAddress),
 	});
 
+builder.Services.AddScoped<IHttpContextAccessor,HttpContextAccessor>();
+
+builder.Services.AddScoped<TokenProvider>();
 
 builder.Services.AddAntDesign();
 

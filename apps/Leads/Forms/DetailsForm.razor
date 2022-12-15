@@ -1,7 +1,9 @@
 ﻿@using Leads.Models.Leads;
 @using Models.ValueObjects;
 
-<Form Model="Models"
+<Form @ref="_detailsForm"
+   Model="Models"
+   OnFinish="(() => Submit())"
    LabelColSpan="8"
    WrapperColSpan="16">
 	<FormItem Label="@(Resources.DataDictionary.LeadStatus)">
@@ -20,6 +22,14 @@
 	ValueName="@nameof(ValueObject.Value)">
 		</Select>
 	</FormItem>
+	<FormItem Label="@(Resources.DataDictionary.LeadSource)">
+		<Select Mode="default"
+	DataSource="_rating"
+		@bind-Value="@context.Rating.Value"
+	LabelName="@nameof(ValueObject.Name)"
+	ValueName="@nameof(ValueObject.Value)">
+		</Select>
+	</FormItem>
 </Form>
 
 @code {
@@ -32,6 +42,9 @@
 
 	List<Models.ValueObjects.ValueObject> _leadSources = new();
 	List<Models.ValueObjects.ValueObject> _leadStatus = new();
+	List<Models.ValueObjects.ValueObject> _rating = new();
+
+	private Form<Models.Leads.CreateLeadViewModel> _detailsForm;
 
 	protected override void OnInitialized()
 	{
@@ -40,5 +53,16 @@
 		_leadStatus = Options.leadStatus;
 
 	}
+
+	public void Validate()
+	{
+		_detailsForm?.Validate();
+	}
+
+	public bool Submit()
+	{
+		return true;
+	}
+
 
 }

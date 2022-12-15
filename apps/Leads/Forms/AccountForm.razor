@@ -2,8 +2,9 @@
 @using Models.ValueObjects;
 
 
-<Form Model="Models"
+<Form @ref="_accountForm" Model="Models"
    LabelColSpan="8"
+   OnFinish="(() => Submit())"
    WrapperColSpan="16">
 	<FormItem Label="@(Resources.DataDictionary.CompanyName)">
 		<Input @bind-Value="@context.Company" />
@@ -44,10 +45,22 @@
 
 	List<Models.ValueObjects.ValueObject> _industry = new();
 
+	public Form<Models.Leads.CreateLeadViewModel> _accountForm { get; set; }
+
 	protected override void OnInitialized()
 	{
 		base.OnInitialized();
 		_industry = Options.industry;
+	}
 
+	public void Validate()
+	{
+		_accountForm.Validate();
+	}
+
+
+	public bool Submit()
+	{
+		return true;
 	}
 }

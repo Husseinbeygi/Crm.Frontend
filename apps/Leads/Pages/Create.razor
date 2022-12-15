@@ -1,6 +1,10 @@
 ﻿@page "/leads/create"
 
 @using Leads.Models.Leads;
+@using System.ComponentModel.DataAnnotations;
+@using System.Text.Json;
+@using System.Text.Encodings.Web;
+@using System.Text.Unicode;
 
 @inject Services.LeadsService _leadService
 
@@ -28,7 +32,7 @@
 			<Segmented Block Labels=@(_segmentdStatus) />
 		</div>
 		<div class="mt-2">
-			<Leads.Forms.PrimaryForm Model="createModel" Options="Options" />
+			<Leads.Forms.PrimaryForm @ref="_primaryForm" Model="createModel" Options="Options" />
 		</div>
 	</LoadingComponent>
 
@@ -41,6 +45,8 @@
 	Leads.Models.ValueObjects.Options Options = new();
 
 	RenderFragment icon =@<Icon Type="arrow-left" />;
+
+	public Leads.Forms.PrimaryForm _primaryForm { get; set; }
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -71,9 +77,23 @@
 		}
 	}
 
-	private void Save()
+	private async Task Save()
 	{
-		Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(createModel));
+		var context = new ValidationContext(createModel, serviceProvider: null, items: null);
+		var validationResults = new List<ValidationResult>();
+
+		if (Validator.TryValidateObject(createModel, context, validationResults))
+		{
+			_primaryForm.Enabled = true;
+			await _leadService.PostAync<CreateLeadViewModel, Leads.Models.ListResponse<LeadsViewModel>>("Leads", createModel);
+			_primaryForm.Enabled = false;
+
+		}
+		else
+		{
+			_primaryForm.ValidateForms();
+
+		}
 	}
 
 }
