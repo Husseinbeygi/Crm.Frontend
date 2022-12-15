@@ -34,14 +34,14 @@
 
 @code {
 	[Parameter]
-	public CreateLeadViewModel Models { get; set; }
+	public LeadsViewModel Models { get; set; }
 
 	[Parameter]
 	public Models.ValueObjects.Options Options { get; set; }
 
 	List<Models.ValueObjects.ValueObject> _salutation = new();
 
-	private Form<Models.Leads.CreateLeadViewModel> _contactForm;
+	private Form<Models.Leads.LeadsViewModel> _contactForm;
 
 	protected override void OnInitialized()
 	{

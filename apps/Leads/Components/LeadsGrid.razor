@@ -1,8 +1,9 @@
-﻿@inject Services.LeadsService _leadService
-@using AntDesign;
+﻿@using AntDesign;
 @using System.Threading;
 @using Leads.Models.Leads;
 
+@inject Services.LeadsService _leadService
+@inject NavigationManager navigationManager
 
 <LoadingComponent Enabled="_isloading">
 	@*	<div class="grid">
@@ -14,7 +15,7 @@
 			<ActionColumn Title="#">
 				<Space>
 				<SpaceItem>
-					<Button Shape="@ButtonShape.Circle" Type="@ButtonType.Text" Style="background-color:#fafafafa">@(context.RowNumber)</Button>
+					<Button OnClick="(() => GotoEdit(context.Id))" Shape="@ButtonShape.Circle" Type="@ButtonType.Text" Style="background-color:#fafafafa">@(context.RowNumber)</Button>
 				</SpaceItem>
 				</Space>
 			</ActionColumn>
@@ -88,4 +89,8 @@
 
 	}
 
+	public async Task GotoEdit(Guid id)
+	{
+		navigationManager.NavigateTo($"/leads/{id}");
+	}
 }

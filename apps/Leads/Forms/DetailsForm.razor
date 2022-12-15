@@ -34,7 +34,7 @@
 
 @code {
 	[Parameter]
-	public CreateLeadViewModel Models { get; set; }
+	public LeadsViewModel Models { get; set; }
 
 
 	[Parameter]
@@ -44,7 +44,7 @@
 	List<Models.ValueObjects.ValueObject> _leadStatus = new();
 	List<Models.ValueObjects.ValueObject> _rating = new();
 
-	private Form<Models.Leads.CreateLeadViewModel> _detailsForm;
+	private Form<Models.Leads.LeadsViewModel> _detailsForm;
 
 	protected override void OnInitialized()
 	{

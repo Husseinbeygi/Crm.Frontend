@@ -37,7 +37,7 @@
 
 @code {
 	[Parameter]
-	public CreateLeadViewModel Models { get; set; }
+	public LeadsViewModel Models { get; set; }
 
 	[Parameter]
 	public Models.ValueObjects.Options Options { get; set; }
@@ -45,7 +45,7 @@
 
 	List<Models.ValueObjects.ValueObject> _industry = new();
 
-	public Form<Models.Leads.CreateLeadViewModel> _accountForm { get; set; }
+	public Form<Models.Leads.LeadsViewModel> _accountForm { get; set; }
 
 	protected override void OnInitialized()
 	{

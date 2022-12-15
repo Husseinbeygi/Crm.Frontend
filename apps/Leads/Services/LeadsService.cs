@@ -12,4 +12,5 @@ public class LeadsService : ServiceBase
 	{
 		BaseUrl = "https://localhost:1403";
 	}
+
 }

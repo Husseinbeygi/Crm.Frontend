@@ -167,6 +167,82 @@ public abstract class ServiceBase : object
 		return default;
 	}
 
+	public virtual async Task<TResponse> PatchAync<TData, TResponse>(string url, TData data)
+	{
+		HttpResponseMessage response = null;
+
+
+		var options = new JsonSerializerOptions
+		{
+			Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+			WriteIndented = true
+		};
+
+		if (string.IsNullOrWhiteSpace(url))
+		{
+			throw new Exception($"Exception:  Url is null.");
+		}
+
+		if (data is null)
+		{
+			throw new Exception($"Exception:  Data is null.");
+		}
+
+		try
+		{
+			//await SetTenantIdAsync(data);
+
+			await SetAuthHeaderAsync();
+
+			AddAcceptedLanguageHeader();
+
+			AddIdempotencyHeader();
+
+			string requestUri =
+				$"{BaseUrl}/{url}";
+
+			response =
+				await
+				Http.PatchAsJsonAsync(requestUri, data, options);
+
+			response.EnsureSuccessStatusCode();
+
+			if (response.IsSuccessStatusCode)
+			{
+				try
+				{
+					TResponse result =
+						await
+						response?.Content?.ReadFromJsonAsync<TResponse>();
+
+					return result;
+				}
+				catch (System.NotSupportedException ex)
+				{
+					string errorMessage =
+						$"Exception: {ex.Message} - The content type is not supported.";
+				}
+				catch (System.Text.Json.JsonException ex)
+				{
+					string errorMessage =
+						$"Exception: {ex.Message} - Invalid JSON.";
+
+				}
+			}
+
+		}
+		catch (System.Net.Http.HttpRequestException ex)
+		{
+			string errorMessage =
+				$"Exception: {ex.Message}";
+		}
+		finally
+		{
+			response?.Dispose();
+		}
+		return default;
+	}
+
 	private async Task SetAuthHeaderAsync()
 	{
 		var readToken = await _tokenProvider.ReadIdToken();
