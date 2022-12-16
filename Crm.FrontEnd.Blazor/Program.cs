@@ -1,53 +1,43 @@
 using Crm.FrontEnd.Blazor;
+using Crm.FrontEnd.Blazor.Infrastructure;
+using Framework.HttpServices;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using System.Globalization;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
-using Microsoft.AspNetCore.Http;
-using Framework.HttpServices;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddOidcAuthentication(options =>
+var services = builder.Services;
+
+services.AddOidcAuthentication(options =>
 {
 	builder.Configuration.Bind("LocalSSO", options.ProviderOptions);
 });
 
-Leads.Configurations.ServiceBootstrapper.Register(builder.Services);
+Leads.Configurations.ServiceBootstrapper.Register(services);
 
-builder.Services.AddSingleton
+services.AddSingleton
 	(current => new System.Net.Http.HttpClient
 	{
 		BaseAddress =
 			new System.Uri(builder.HostEnvironment.BaseAddress),
 	});
 
-builder.Services.AddScoped<TokenProvider>();
+services.AddScoped(x => new TokenProvider
+(x.GetRequiredService<IJSRuntime>(),
+builder.Configuration.GetRequiredSection("LocalSSO:Authority")?.Value,
+builder.Configuration.GetRequiredSection("LocalSSO:ClientId")?.Value));
 
-builder.Services.AddAntDesign();
+services.AddAntDesign();
 
-builder.Services.AddLocalization();
+services.AddLocalization();
 
 var host = builder.Build();
 
-CultureInfo culture;
-var js = host.Services.GetRequiredService<IJSRuntime>();
-var result = await js.InvokeAsync<string>("blazorCulture.get");
-
-if (result != null)
-{
-	culture = new CultureInfo(result);
-}
-else
-{
-	culture = new CultureInfo("en-US");
-	await js.InvokeVoidAsync("blazorCulture.set", "en-US");
-}
-
-CultureInfo.DefaultThreadCurrentCulture = culture;
-CultureInfo.DefaultThreadCurrentUICulture = culture;
+await User.SetUserCulture(host);
 
 await host.RunAsync();
 

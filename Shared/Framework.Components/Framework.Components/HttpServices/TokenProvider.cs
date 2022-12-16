@@ -7,17 +7,26 @@ namespace Framework.HttpServices;
 
 public class TokenProvider
 {
+    public string Authority { get; set; }
+	public string ClientId { get; set; }
+
 	private readonly IJSRuntime _jS;
 
-	public TokenProvider(IJSRuntime JS)
+	public TokenProvider(IJSRuntime JS
+		,string authority
+		,string clientId)
 	{
 		_jS = JS;
+		Authority = authority;
+		ClientId = clientId;
 	}
 
 	public async Task<string> ReadIdToken()
 	{
-		const string clientId = "184cf96c-5e2a-457f-bb8c-9514fe4e085d";
-		var userDataKey = $"oidc.user:https://localhost:7117/:{clientId}";
+		if (string.IsNullOrEmpty(Authority)) { throw new ArgumentNullException(nameof(Authority)); }
+		if (string.IsNullOrEmpty(ClientId)) { throw new ArgumentNullException(nameof(ClientId)); }
+
+		var userDataKey = $"oidc.user:{Authority}:{ClientId}";
 		var userData = await _jS.InvokeAsync<string>("sessionStorage.getItem", userDataKey);
 		var userDataObject = JsonSerializer.Deserialize<Root>(userData);
 		return userDataObject?.id_token;
