@@ -1,6 +1,7 @@
 using Crm.FrontEnd.Blazor;
 using Crm.FrontEnd.Blazor.Infrastructure;
 using Framework.HttpServices;
+using Framework.Toasts;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +31,8 @@ services.AddScoped(x => new TokenProvider
 (x.GetRequiredService<IJSRuntime>(),
 builder.Configuration.GetRequiredSection("LocalSSO:Authority")?.Value,
 builder.Configuration.GetRequiredSection("LocalSSO:ClientId")?.Value));
+
+services.AddScoped<ToastMessage>();
 
 services.AddAntDesign();
 

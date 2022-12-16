@@ -1,4 +1,5 @@
 ﻿using AntDesign;
+using Framework.Models;
 using Leads.Models.Leads;
 using Microsoft.AspNetCore.Components;
 
@@ -63,7 +64,7 @@ public partial class LeadsGrid
 		_isloading = true;
 
 		var _leadsResponse = await _leadService
-			.GetAsync<Models.ListResponse<Leads.Models.Leads.LeadsViewModel>>("Leads");
+			.GetAsync<ListResponse<LeadsViewModel>>("Leads");
 
 		Leads = _leadsResponse.data;
 
@@ -98,7 +99,7 @@ public partial class LeadsGrid
 		}
 
 		await _leadService.
-			DeleteAsync<Guid, Models.ListResponse<Leads.Models.Leads.LeadsViewModel>>("Leads", keys);
+			DeleteAsync<Guid, ListResponse<LeadsViewModel>>("Leads", keys);
 
 		await GetLeadsAsync();
 

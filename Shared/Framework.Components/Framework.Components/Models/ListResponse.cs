@@ -1,4 +1,4 @@
-﻿namespace Leads.Models
+﻿namespace Framework.Models
 {
 	public class ListResponse<T>
 	{

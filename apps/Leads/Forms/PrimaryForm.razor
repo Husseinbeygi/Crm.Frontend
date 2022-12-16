@@ -1,5 +1,5 @@
 ﻿@using Leads.Models.Leads;
-<Spin Tip="@(string.Concat(Resources.DataDictionary.Loading,"..."))" Spinning="Enabled">
+<Spin Tip="@(string.Concat(Resources.DataDictionary.Loading,"..."))" Spinning="LoadingEnabled">
 
 <div class="row">
 	<div class="col-md-3">
@@ -68,7 +68,7 @@
 </Spin>
 @code {
 	[Parameter]
-	public bool Enabled { get; set; }
+	public bool LoadingEnabled { get; set; }
 
 	[Parameter]
 	public LeadsViewModel Model { get; set; }

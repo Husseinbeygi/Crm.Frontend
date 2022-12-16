@@ -123,6 +123,9 @@
   <data name="EmailAddressVerified" xml:space="preserve">
     <value>Email verified successfully</value>
   </data>
+  <data name="Success" xml:space="preserve">
+    <value>Operation Completed Successfully</value>
+  </data>
   <data name="SuccessCreate" xml:space="preserve">
     <value>Successfully Created {0}</value>
   </data>

@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
-using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Web;
 
 namespace Framework.HttpServices;
@@ -16,8 +13,8 @@ public abstract class ServiceBase : object
 {
 	private readonly TokenProvider _tokenProvider;
 
-	public ServiceBase(HttpClient http, 
-		AuthenticationStateProvider authenticationStateProvider,TokenProvider tokenProvider)
+	public ServiceBase(HttpClient http,
+		AuthenticationStateProvider authenticationStateProvider, TokenProvider tokenProvider)
 	{
 		Http = http;
 		AuthenticationStateProvider = authenticationStateProvider;
@@ -54,29 +51,25 @@ public abstract class ServiceBase : object
 				(requestUri: requestUri)
 				;
 
-			response.EnsureSuccessStatusCode();
 
-			if (response.IsSuccessStatusCode)
+			try
 			{
-				try
-				{
-					TResponse result =
-						await
-						response?.Content?.ReadFromJsonAsync<TResponse>();
+				TResponse result =
+					await
+					response?.Content?.ReadFromJsonAsync<TResponse>();
 
-					return result;
-				}
-				catch (System.NotSupportedException ex)
-				{
-					string errorMessage =
-						$"Exception: {ex.Message} - The content type is not supported.";
-				}
-				catch (System.Text.Json.JsonException ex)
-				{
-					string errorMessage =
-						$"Exception: {ex.Message} - Invalid JSON.";
+				return result;
+			}
+			catch (System.NotSupportedException ex)
+			{
+				string errorMessage =
+					$"Exception: {ex.Message} - The content type is not supported.";
+			}
+			catch (System.Text.Json.JsonException ex)
+			{
+				string errorMessage =
+					$"Exception: {ex.Message} - Invalid JSON.";
 
-				}
 			}
 		}
 		catch (System.Net.Http.HttpRequestException ex)
@@ -130,29 +123,24 @@ public abstract class ServiceBase : object
 				await
 				Http.PostAsJsonAsync(requestUri, data, options);
 
-			response.EnsureSuccessStatusCode();
-
-			if (response.IsSuccessStatusCode)
+			try
 			{
-				try
-				{
-					TResponse result =
-						await
-						response?.Content?.ReadFromJsonAsync<TResponse>();
+				TResponse result =
+					await
+					response?.Content?.ReadFromJsonAsync<TResponse>();
 
-					return result;
-				}
-				catch (System.NotSupportedException ex)
-				{
-					string errorMessage =
-						$"Exception: {ex.Message} - The content type is not supported.";
-				}
-				catch (System.Text.Json.JsonException ex)
-				{
-					string errorMessage =
-						$"Exception: {ex.Message} - Invalid JSON.";
+				return result;
+			}
+			catch (System.NotSupportedException ex)
+			{
+				string errorMessage =
+					$"Exception: {ex.Message} - The content type is not supported.";
+			}
+			catch (System.Text.Json.JsonException ex)
+			{
+				string errorMessage =
+					$"Exception: {ex.Message} - Invalid JSON.";
 
-				}
 			}
 
 		}
@@ -191,8 +179,6 @@ public abstract class ServiceBase : object
 
 		try
 		{
-			//await SetTenantIdAsync(data);
-
 			await SetAuthHeaderAsync();
 
 			AddAcceptedLanguageHeader();
@@ -205,30 +191,24 @@ public abstract class ServiceBase : object
 			response =
 				await
 				Http.PatchAsJsonAsync(requestUri, data, options);
-
-			response.EnsureSuccessStatusCode();
-
-			if (response.IsSuccessStatusCode)
+			try
 			{
-				try
-				{
-					TResponse result =
-						await
-						response?.Content?.ReadFromJsonAsync<TResponse>();
+				TResponse result =
+					await
+					response?.Content?.ReadFromJsonAsync<TResponse>();
 
-					return result;
-				}
-				catch (System.NotSupportedException ex)
-				{
-					string errorMessage =
-						$"Exception: {ex.Message} - The content type is not supported.";
-				}
-				catch (System.Text.Json.JsonException ex)
-				{
-					string errorMessage =
-						$"Exception: {ex.Message} - Invalid JSON.";
+				return result;
+			}
+			catch (System.NotSupportedException ex)
+			{
+				string errorMessage =
+					$"Exception: {ex.Message} - The content type is not supported.";
+			}
+			catch (System.Text.Json.JsonException ex)
+			{
+				string errorMessage =
+					$"Exception: {ex.Message} - Invalid JSON.";
 
-				}
 			}
 
 		}
@@ -244,7 +224,7 @@ public abstract class ServiceBase : object
 		return default;
 	}
 
-	public virtual async Task<TResponse> DeleteAsync<TKey, TResponse>(string url,IEnumerable<TKey> keys)
+	public virtual async Task<TResponse> DeleteAsync<TKey, TResponse>(string url, IEnumerable<TKey> keys)
 	{
 		HttpResponseMessage response = null;
 
@@ -279,33 +259,27 @@ public abstract class ServiceBase : object
 			Console.WriteLine(queryString);
 			response =
 				await
-				Http.DeleteAsync(string.Concat(requestUri,"?",queryString));
+				Http.DeleteAsync(string.Concat(requestUri, "?", queryString));
 
-			response.EnsureSuccessStatusCode();
-
-			if (response.IsSuccessStatusCode)
+			try
 			{
-				try
-				{
-					TResponse result =
-						await
-						response?.Content?.ReadFromJsonAsync<TResponse>();
+				TResponse result =
+					await
+					response?.Content?.ReadFromJsonAsync<TResponse>();
 
-					return result;
-				}
-				catch (System.NotSupportedException ex)
-				{
-					string errorMessage =
-						$"Exception: {ex.Message} - The content type is not supported.";
-				}
-				catch (System.Text.Json.JsonException ex)
-				{
-					string errorMessage =
-						$"Exception: {ex.Message} - Invalid JSON.";
-
-				}
+				return result;
 			}
+			catch (System.NotSupportedException ex)
+			{
+				string errorMessage =
+					$"Exception: {ex.Message} - The content type is not supported.";
+			}
+			catch (System.Text.Json.JsonException ex)
+			{
+				string errorMessage =
+					$"Exception: {ex.Message} - Invalid JSON.";
 
+			}
 		}
 		catch (System.Net.Http.HttpRequestException ex)
 		{
@@ -334,7 +308,7 @@ public abstract class ServiceBase : object
 
 		var _tenantId = data.GetType().GetProperty("TenantId");
 
-		if (_tenantId == null) {  return; }
+		if (_tenantId == null) { return; }
 		_tenantId.SetValue(data, Guid.Parse(authState.User.Claims.FirstOrDefault(x => x.Type == "OrganizationId").Value));
 
 

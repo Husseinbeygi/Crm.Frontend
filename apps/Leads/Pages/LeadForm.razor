@@ -1,6 +1,7 @@
 ﻿@page "/leads/create"
 @page "/leads/{id}"
-
+@using Framework.Models;
+@using Framework.Toasts;
 @using Leads.Models.Leads;
 @using System.ComponentModel.DataAnnotations;
 @using System.Text.Json;
@@ -9,7 +10,7 @@
 
 @inject Services.LeadsService _leadService
 @inject NavigationManager navigationManager
-
+@inject ToastMessage _toastMessage
 
 <LoadingComponent Enabled="_isloading">
 	<PageHeader BackIcon="true" Class="site-page-header" BackIconTemplate="icon">
@@ -63,7 +64,12 @@
 	{
 		_isloading = true;
 
-		Options = (await _leadService.GetAsync<Models.Response<Leads.Models.ValueObjects.Options>>("Leads/options")).data;
+		var res =
+			await _leadService.GetAsync
+			<Response<Leads.Models.ValueObjects.Options>>
+			("Leads/options");
+
+		Options = res.data;
 
 		foreach (var item in Options.leadStatus)
 		{
@@ -88,19 +94,28 @@
 
 		if (Validator.TryValidateObject(Model, context, validationResults))
 		{
-			_primaryForm.Enabled = true;
+			Response res = new();
+			_primaryForm.LoadingEnabled = true;
+
 			if (IsPageHasId())
 			{
 				Model.Id = Guid.Parse(Id);
-				await _leadService.PatchAsync<LeadsViewModel, Leads.Models.ListResponse<LeadsViewModel>>("Leads", Model);
+				res = await _leadService
+				.PatchAsync<LeadsViewModel, Response<LeadsViewModel>>("Leads", Model);
 			}
 			else
 			{
-				await _leadService.PostAsync<LeadsViewModel, Leads.Models.ListResponse<LeadsViewModel>>("Leads", Model);
+				res = await _leadService
+				.PostAsync<LeadsViewModel, Response<LeadsViewModel>>("Leads", Model);
 			}
-			_primaryForm.Enabled = false;
 
-			navigationManager.NavigateTo("/Leads");
+			_primaryForm.LoadingEnabled = false;
+
+			var IsSucceeded = await _toastMessage.Show(res);
+			if (IsSucceeded)
+			{
+				navigationManager.NavigateTo("/Leads");
+			}
 		}
 		else
 		{
@@ -118,7 +133,7 @@
 	{
 		if (IsPageHasId())
 		{
-			var Response = await _leadService.GetAsync<Models.Response<LeadsViewModel>>($"Leads/{Id}");
+			var Response = await _leadService.GetAsync<Framework.Models.Response<LeadsViewModel>>($"Leads/{Id}");
 			Model = Response.data;
 		}
 	}

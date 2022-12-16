@@ -123,6 +123,9 @@
   <data name="EmailAddressVerified" xml:space="preserve">
     <value>نشانی پست الکترونیکی با موفقیت تایید گردید.</value>
   </data>
+  <data name="Success" xml:space="preserve">
+    <value>عملیات با موفقیت انجام شد</value>
+  </data>
   <data name="SuccessCreate" xml:space="preserve">
     <value>اطلاعات {0} با موفقیت درج گردید.</value>
   </data>
