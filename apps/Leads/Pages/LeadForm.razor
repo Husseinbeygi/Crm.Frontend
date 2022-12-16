@@ -40,19 +40,15 @@
 	</LoadingComponent>
 
 	@code {
-
-	[Parameter]
-	public string? Id { get; set; }
-
-	private bool _isloading = true;
-	private List<string> _segmentdStatus = new();
-
 	LeadsViewModel Model = new();
-
+	bool _isloading = true;
+	List<string> _segmentdStatus = new();
 	Leads.Models.ValueObjects.Options Options = new();
 
 	RenderFragment icon =@<Icon Type="arrow-left" />;
 
+	[Parameter]
+	public string? Id { get; set; }
 	public Leads.Forms.PrimaryForm _primaryForm { get; set; }
 
 	protected override async Task OnInitializedAsync()
@@ -113,6 +109,11 @@
 		}
 	}
 
+	private bool IsPageHasId()
+	{
+		return !string.IsNullOrWhiteSpace(Id);
+	}
+
 	private async Task GetUserDetailsIfPageHasId()
 	{
 		if (IsPageHasId())
@@ -120,10 +121,5 @@
 			var Response = await _leadService.GetAsync<Models.Response<LeadsViewModel>>($"Leads/{Id}");
 			Model = Response.data;
 		}
-	}
-
-	private bool IsPageHasId()
-	{
-		return !string.IsNullOrWhiteSpace(Id);
 	}
 }

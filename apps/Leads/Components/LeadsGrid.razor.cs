@@ -6,17 +6,16 @@ namespace Leads.Components;
 
 public partial class LeadsGrid
 {
-	[CascadingParameter]
-	public Pages.Index Index { get; set; }
-
-	private bool _isloading = true;
+	bool _isloading = true;
 	ColumnAlign columnAlign = ColumnAlign.Center;
 	string _checkboxFix = "left";
 	string _actionFix = "right";
 	string fullnameFilter = string.Empty;
-	private IEnumerable<LeadsViewModel> selectedRows;
 
+	[CascadingParameter]
+	public Pages.Index Index { get; set; }
 
+	IEnumerable<LeadsViewModel> selectedRows;
 	public IEnumerable<LeadsViewModel> SelectedRows
 	{
 		get
@@ -31,6 +30,7 @@ public partial class LeadsGrid
 	}
 
 	public List<LeadsViewModel> Leads { get; set; }
+
 	List<LeadsViewModel> FilteredItems
 	{
 		get
@@ -105,5 +105,4 @@ public partial class LeadsGrid
 		_isloading = false;
 
 	}
-
 }

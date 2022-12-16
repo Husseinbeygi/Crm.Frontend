@@ -17,13 +17,14 @@
 <CascadingValue Value="this">
 	<LeadsGrid @ref="LeadsGrid"></LeadsGrid>
 </CascadingValue>
-@code {
-	public LeadsGrid? LeadsGrid { get; set; }
 
-	private string TextValue;
-	private IQueryable<LeadsViewModel> leads;
-	private bool isopen = false;
-	private bool _canDelete = false;
+@code {
+	string TextValue;
+	IQueryable<LeadsViewModel> leads;
+	bool isopen = false;
+	bool _canDelete = false;
+
+	public LeadsGrid? LeadsGrid { get; set; }
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -35,6 +36,7 @@
 		StateHasChanged();
 		_canDelete = LeadsGrid.SelectedRows.Any();
 	}
+
 	private async Task Delete(ConfirmButtons confirmButtons)
 	{
 		var content = Resources.Messages.Confirm.Delete;

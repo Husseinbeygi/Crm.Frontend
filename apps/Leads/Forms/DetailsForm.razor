@@ -33,16 +33,15 @@
 </Form>
 
 @code {
-	[Parameter]
-	public LeadsViewModel Models { get; set; }
-
-
-	[Parameter]
-	public Models.ValueObjects.Options Options { get; set; }
-
 	List<Models.ValueObjects.ValueObject> _leadSources = new();
 	List<Models.ValueObjects.ValueObject> _leadStatus = new();
 	List<Models.ValueObjects.ValueObject> _rating = new();
+
+	[Parameter]
+	public LeadsViewModel Models { get; set; }
+
+	[Parameter]
+	public Models.ValueObjects.Options Options { get; set; }
 
 	private Form<Models.Leads.LeadsViewModel> _detailsForm;
 
