@@ -1,16 +1,16 @@
-﻿<Tooltip Title="@(Resources.DataDictionary.Export)">
-	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Export" OnClick="OnDeleteClick" />
+﻿<Tooltip Title="@(Resources.ButtonCaptions.ExportExcel)">
+	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Export" OnClick="OnExportClick" />
 </Tooltip>
 
-<Tooltip Title="@(Resources.DataDictionary.Edit)">
-	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Edit" OnClick="OnEditClick" />
+<Tooltip Title="@(Resources.ButtonCaptions.Delete)">
+	<Button Disabled="!canDelete" Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Delete" OnClick="OnDeleteClick" />
 </Tooltip>
 
-<Tooltip Title="@(Resources.DataDictionary.Add)">
+<Tooltip Title="@(Resources.ButtonCaptions.Create)">
 	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Plus" OnClick="OnAddClick" />
 </Tooltip>
 
-<Tooltip Title="@(Resources.DataDictionary.Reload)">
+<Tooltip Title="@(Resources.ButtonCaptions.Refresh)">
 	<Button Shape="@ButtonShape.Circle" Icon="@IconType.Outline.Reload" OnClick="OnRefreshClick" />
 </Tooltip>
 
@@ -27,5 +27,11 @@
 
 	[Parameter]
 	public EventCallback OnRefreshClick { get; set; }
+
+	[Parameter]
+	public EventCallback OnExportClick { get; set; }
+
+	[Parameter]
+	public bool canDelete { get; set; }
 
 }

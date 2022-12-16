@@ -144,6 +144,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="ExportExcel" xml:space="preserve">
+    <value>ExportExcel</value>
+  </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot Password</value>
   </data>
@@ -165,8 +168,14 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Previous</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>

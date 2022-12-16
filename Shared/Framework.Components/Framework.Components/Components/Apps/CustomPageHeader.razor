@@ -11,7 +11,9 @@
 		<Toolbar OnAddClick="OnAddClick" 
 			OnDeleteClick="OnDeleteClick" 
 			OnEditClick="OnEditClick" 
-			OnRefreshClick="OnRefreshClick"></Toolbar>
+			OnRefreshClick="OnRefreshClick"
+			canDelete="canDelete"
+		></Toolbar>
 	</div>
 </div>
 
@@ -32,4 +34,6 @@
 	[Parameter]
 	public EventCallback OnRefreshClick { get; set; }
 
+	[Parameter]
+	public bool canDelete { get; set; }
 }

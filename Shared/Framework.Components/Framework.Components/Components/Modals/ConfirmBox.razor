@@ -1,0 +1,46 @@
+﻿<Modal Visible="@(Visible)"
+	OnOk="@(OnOK)"
+	OnCancel="@(OnCancel)"
+	Closable=false>
+
+	<p>
+		@(BodyText)
+	</p>
+
+</Modal>
+
+@code {
+
+	[Parameter]
+	public bool Visible { get; set; } = false;
+
+	[Parameter]
+	public EventCallback OnOK { get; set; }
+
+	[Parameter]
+	public EventCallback OnCancel { get; set; }
+
+	[Parameter]
+	public string OkButtonText { get; set; } = string.Empty;
+
+	[Parameter]
+	public string CancelButtonText { get; set; } = string.Empty;
+
+	[Parameter]
+	public string BodyText { get; set; } = string.Empty;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+
+		if (string.IsNullOrWhiteSpace(OkButtonText))
+		{
+			OkButtonText = Resources.ButtonCaptions.OK;
+		}
+		if (string.IsNullOrWhiteSpace(CancelButtonText))
+		{
+			CancelButtonText = Resources.ButtonCaptions.Cancel;
+		}
+
+	}
+}

@@ -3,24 +3,53 @@
 @using Leads.Models.Leads;
 
 @inject NavigationManager navigationManager
+@inject ConfirmService _confirmService
 
-<CustomPageHeader OnAddClick="NavigateToCreate" OnRefreshClick="Refresh">
+<CustomPageHeader OnAddClick="NavigateToCreate"
+	  OnRefreshClick="Refresh"
+	  OnDeleteClick="@(async ()=> { await Delete(ConfirmButtons.OKCancel); })"
+	  canDelete="_canDelete">
 
 	<h3>@(Resources.DataDictionary.Leads)</h3>
 
 </CustomPageHeader>
 
-<LeadsGrid @ref="_leadsGrid"></LeadsGrid>
-
-
+<CascadingValue Value="this">
+	<LeadsGrid @ref="LeadsGrid"></LeadsGrid>
+</CascadingValue>
 @code {
-
-	private  LeadsGrid? _leadsGrid;
+	public LeadsGrid? LeadsGrid { get; set; }
 
 	private string TextValue;
 	private IQueryable<LeadsViewModel> leads;
-
 	private bool isopen = false;
+	private bool _canDelete = false;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+	}
+
+	public void CheckforSelection()
+	{
+		StateHasChanged();
+		_canDelete = LeadsGrid.SelectedRows.Any();
+	}
+	private async Task Delete(ConfirmButtons confirmButtons)
+	{
+		var content = Resources.Messages.Confirm.Delete;
+		var title = Resources.ButtonCaptions.Delete;
+		var confirmResult = await _confirmService.Show(content, title, confirmButtons);
+		if (confirmResult == ConfirmResult.OK)
+		{
+			Console.WriteLine("ddd");
+			if (LeadsGrid is not null)
+			{
+				await LeadsGrid.DeleteLeads();
+			}
+		}
+	}
+
 	private void NavigateToCreate()
 	{
 		navigationManager.NavigateTo("/leads/create");
@@ -28,9 +57,9 @@
 
 	private async Task Refresh()
 	{
-		if (_leadsGrid is not null)
+		if (LeadsGrid is not null)
 		{
-			await _leadsGrid.GetLeadsAsync();
+			await LeadsGrid.GetLeadsAsync();
 		}
 	}
 }

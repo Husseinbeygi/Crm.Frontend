@@ -96,11 +96,11 @@
 			if (IsPageHasId())
 			{
 				Model.Id = Guid.Parse(Id);
-				await _leadService.PatchAync<LeadsViewModel, Leads.Models.ListResponse<LeadsViewModel>>("Leads", Model);
+				await _leadService.PatchAsync<LeadsViewModel, Leads.Models.ListResponse<LeadsViewModel>>("Leads", Model);
 			}
 			else
 			{
-				await _leadService.PostAync<LeadsViewModel, Leads.Models.ListResponse<LeadsViewModel>>("Leads", Model);
+				await _leadService.PostAsync<LeadsViewModel, Leads.Models.ListResponse<LeadsViewModel>>("Leads", Model);
 			}
 			_primaryForm.Enabled = false;
 

@@ -1,96 +1,35 @@
-﻿@using AntDesign;
-@using System.Threading;
-@using Leads.Models.Leads;
+﻿@using Leads.Models.Leads;
+@using Leads.Services;
 
-@inject Services.LeadsService _leadService
-@inject NavigationManager navigationManager
+@inject LeadsService _leadService;
+@inject NavigationManager _navigationManager;
 
 <LoadingComponent Enabled="_isloading">
-	@*	<div class="grid">
-	<div class="grid-container">
-	*@
+	<Table TItem="LeadsViewModel" 
+		DataSource="Leads" 
+		Total="Leads.Count()"
+		@bind-SelectedRows="SelectedRows">
 
-	<Table TItem="LeadsViewModel" DataSource="Leads" Total="Leads.Count()">
 		<Selection Align="ColumnAlign.Center" Fixed="_checkboxFix" Key="@(context.Id.ToString())" />
-			<ActionColumn Title="#">
-				<Space>
+		<ActionColumn Title="#">
+			<Space>
 				<SpaceItem>
-					<Button OnClick="(() => GotoEdit(context.Id))" Shape="@ButtonShape.Circle" Type="@ButtonType.Text" Style="background-color:#fafafafa">@(context.RowNumber)</Button>
-				</SpaceItem>
+					<Button OnClick="(() => GotoEdit(context.Id))" 
+						Shape="@ButtonShape.Circle" 
+						Type="@ButtonType.Text" 
+						Style="background-color:#fafafafa">
+						@(context.RowNumber)
+					</Button>
+					</SpaceItem>
 				</Space>
 			</ActionColumn>
-		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.FullName)" Property="c=>c.FullName" Sortable Filterable />
-		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Title)" Property="c=>c.Title" Sortable Filterable />
-		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Mobile)"  Property="c=>c.Mobile" Sortable Filterable />
-		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Indstry)" Property="c=>c.Industry.Name" Sortable Filterable />
-		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.LeadStatus)"  Property="c=>c.LeadStatus.Name" Sortable Filterable />
-		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.LeadSource)" Property="c=>c.LeadSource.Name" Sortable Filterable />
-		<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Owner)" Property="c=>c.OwnerId" Sortable  Filterable />
-@*		<ActionColumn Title="@(Resources.DataDictionary.Action)" Width="100" Fixed="_actionFix">
-			<a>action</a>
-		</ActionColumn>*@
+			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.FullName)" Property="c=>c.FullName" Sortable Filterable />
+			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Title)" Property="c=>c.Title" Sortable Filterable />
+			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Mobile)" Property="c=>c.Mobile" Sortable Filterable />
+			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Indstry)" Property="c=>c.Industry.Name" Sortable Filterable />
+			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.LeadStatus)" Property="c=>c.LeadStatus.Name" Sortable Filterable />
+			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.LeadSource)" Property="c=>c.LeadSource.Name" Sortable Filterable />
+			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Owner)" Property="c=>c.OwnerId" Sortable Filterable />
 
-	</Table>
-
-		@*				<PropertyColumn Property="c=>c.Summary" Sortable />
-		<ActionColumn>
-		<Space>
-		<SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">Delete</Button></SpaceItem>
-		</Space>
-		</ActionColumn>
-		*@
+		</Table>
 </LoadingComponent>
-
-	@code {
-	private bool _isloading = true;
-	ColumnAlign columnAlign = ColumnAlign.Center;
-	string _checkboxFix = "left";
-	string _actionFix = "right";
-	public List<LeadsViewModel> Leads { get; set; }
-
-	string fullnameFilter = string.Empty;
-	List<LeadsViewModel> FilteredItems =>
-	Leads?.Where(x => x.FullName.Contains(fullnameFilter, StringComparison.CurrentCultureIgnoreCase)).ToList();
-
-	List<LeadsViewModel> _leadsViewModels = new();
-
-	protected async override Task OnInitializedAsync()
-	{
-		//_isloading = true;
-		await base.OnInitializedAsync();
-		await GetLeadsAsync();
-		AdjustRightToLeft();
-		//_isloading = false;
-	}
-
-	private void AdjustRightToLeft()
-	{
-		if (Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-		{
-			string _checkboxFix = "right";
-			string _actionFix = "left";
-		}
-	}
-
-	public async Task GetLeadsAsync()
-	{
-		_isloading = true;
-
-		var _leadsResponse = await _leadService.GetAsync<Models.ListResponse<Leads.Models.Leads.LeadsViewModel>>("Leads");
-		Console.WriteLine(_leadsResponse);
-		Leads = _leadsResponse.data;
-
-		int i = 1;
-		foreach (var item in Leads)
-		{
-			item.RowNumber = i++;
-		}
-		_isloading = false;
-
-	}
-
-	public async Task GotoEdit(Guid id)
-	{
-		navigationManager.NavigateTo($"/leads/{id}");
-	}
-}

@@ -1,4 +1,5 @@
-﻿@using Crm.FrontEnd.Blazor.Shared
+﻿@using AntDesign
+@using Crm.FrontEnd.Blazor.Shared
 @using Framework.HttpServices;
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Authentication
@@ -7,12 +8,13 @@
 @inject NavigationManager Navigation
 @inject TokenProvider tokenProvider
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@inject IHttpContextAccessor httpContextAccessor
 
 <CascadingAuthenticationState>
 	<Router AppAssembly="@typeof(Program).Assembly"
    AdditionalAssemblies="new[] { typeof(Leads.Pages.Index).Assembly}">
 		<Found Context="routeData">
+
+			<AntContainer />
 
 			@if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
 			{

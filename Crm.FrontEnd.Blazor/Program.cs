@@ -15,8 +15,7 @@ builder.Services.AddOidcAuthentication(options =>
 	builder.Configuration.Bind("LocalSSO", options.ProviderOptions);
 });
 
-builder.Services.AddScoped<Leads.Services.LeadsService>();
-
+Leads.Configurations.ServiceBootstrapper.Register(builder.Services);
 
 builder.Services.AddSingleton
 	(current => new System.Net.Http.HttpClient
@@ -24,8 +23,6 @@ builder.Services.AddSingleton
 		BaseAddress =
 			new System.Uri(builder.HostEnvironment.BaseAddress),
 	});
-
-builder.Services.AddScoped<IHttpContextAccessor,HttpContextAccessor>();
 
 builder.Services.AddScoped<TokenProvider>();
 
