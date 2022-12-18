@@ -33,7 +33,7 @@
 			</PageHeaderContent>
 		</PageHeader>
 		<div class="my-1">
-			<Segmented Block Labels=@(_segmentdStatus) />
+			<Segmented Block TValue="string" Labels=@(_segmentdStatus) Value="@(_segmentdStatusValue)" OnChange="StatusChanged" />
 		</div>
 		<div class="mt-2">
 			<Leads.Forms.PrimaryForm @ref="_primaryForm" Model="Model" Options="Options" />
@@ -44,6 +44,7 @@
 	LeadsViewModel Model = new();
 	bool _isloading = true;
 	List<string> _segmentdStatus = new();
+	string _segmentdStatusValue; 
 	Leads.Models.ValueObjects.Options Options = new();
 
 	RenderFragment icon =@<Icon Type="arrow-left" />;
@@ -73,10 +74,23 @@
 
 		foreach (var item in Options.leadStatus)
 		{
-			_segmentdStatus.Add(item.Name);
+			_segmentdStatus.Add(string.Concat(item.Value + 1, ".",item.Name));
 		}
 
 		_isloading = false;
+	}
+
+	private async Task StatusChanged(string value)
+	{
+		/*
+		 * The Minus ONE is for 
+		 * Map the Current Code to ID in Database
+		 */
+		var changedStatusValue = int.Parse(value.Split(".")[0]) - 1;
+
+		Model.LeadStatus.Value = changedStatusValue;
+
+		_segmentdStatusValue = value;
 	}
 
 	private void AdjustRightToLeft()
@@ -133,8 +147,13 @@
 	{
 		if (IsPageHasId())
 		{
-			var Response = await _leadService.GetAsync<Framework.Models.Response<LeadsViewModel>>($"Leads/{Id}");
+			var Response = 
+				await _leadService.GetAsync
+					<Framework.Models.Response<LeadsViewModel>>($"Leads/{Id}");
 			Model = Response.data;
+
+			_segmentdStatusValue = 
+						string.Concat(Model.LeadStatus.Value + 1, ".", Model.LeadStatus.Name);
 		}
 	}
 }
