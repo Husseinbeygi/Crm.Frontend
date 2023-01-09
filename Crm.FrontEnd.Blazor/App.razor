@@ -1,4 +1,5 @@
 ﻿@using AntDesign
+@using Crm.FrontEnd.Blazor.Pages.AuthorizingShared
 @using Crm.FrontEnd.Blazor.Shared
 @using Framework.HttpServices;
 @using Microsoft.AspNetCore.Http
@@ -16,43 +17,15 @@
 
 			<AntContainer />
 
-			@if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-			{
-				<AuthorizeRouteView RouteData="@routeData"
-			DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Rtl.RtlMainLayout)">
-					<NotAuthorized>
-						@if (context?.User?.Identity?.IsAuthenticated == false)
-						{
-							<RedirectToLogin />
-						}
-						else
-						{
-							<p>
-								@(Resources.Messages.Errors.NoAuthorization)
-							</p>
-						}
-					</NotAuthorized>
-				</AuthorizeRouteView>
-			}
-			else
-			{
-				<AuthorizeRouteView RouteData="@routeData"
-			DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Ltr.LtrMainLayout)">
-					<NotAuthorized>
-						@if (context?.User?.Identity?.IsAuthenticated == false)
-						{
-							<RedirectToLogin />
-						}
-						else
-						{
-							<p>
-								@(Resources.Messages.Errors.NoAuthorization)
-							</p>
-						}
-					</NotAuthorized>
-				</AuthorizeRouteView>
-			}
-
+			<AuthorizeRouteView RouteData="@routeData"
+		DefaultLayout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.SecurityLayout)">
+				<Authorizing>
+					<AuthorizingLoadingComponent />
+				</Authorizing>
+				<NotAuthorized>
+						<RedirectToLogin />
+				</NotAuthorized>
+			</AuthorizeRouteView>
 		</Found>
 		<NotFound>
 			<LayoutView Layout="@typeof(Crm.FrontEnd.Blazor.Shared.Layouts.Ltr.LtrMainLayout)">

@@ -44,7 +44,6 @@
 		var confirmResult = await _confirmService.Show(content, title, confirmButtons);
 		if (confirmResult == ConfirmResult.OK)
 		{
-			Console.WriteLine("ddd");
 			if (LeadsGrid is not null)
 			{
 				await LeadsGrid.DeleteLeads();

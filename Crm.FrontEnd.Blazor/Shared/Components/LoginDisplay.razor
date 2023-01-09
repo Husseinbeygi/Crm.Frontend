@@ -24,7 +24,7 @@
 						</p>
 					</li>
 					<li><hr class="dropdown-divider"></li>
-					<li><a class="dropdown-item" href="#">@(Resources.DataDictionary.Settings)</a></li>
+					<li><a class="dropdown-item" @onclick="GotoSettings">@(Resources.DataDictionary.Settings)</a></li>
 					<li><a class="dropdown-item" href="#">@(Resources.DataDictionary.Support)</a></li>
 					<li><hr class="dropdown-divider"></li>
 					<li><button @onclick="BeginSignOut" class="dropdown-item">@(Resources.DataDictionary.Logout)</button></li>
@@ -43,9 +43,17 @@
 
 @code {
 
+
+
 	private async Task BeginSignOut(MouseEventArgs args)
 	{
 		await SignOutManager.SetSignOutState();
 		Navigation.NavigateTo("authentication/logout");
+	}
+
+	private async Task GotoSettings(MouseEventArgs args)
+	{
+		await SignOutManager.SetSignOutState();
+		Navigation.NavigateTo("https://localhost:7117/Identity/Account/Manage/Index");
 	}
 }

@@ -18,7 +18,7 @@
 						Shape="@ButtonShape.Circle" 
 						Type="@ButtonType.Text" 
 						Style="background-color:#fafafafa">
-						@(context.RowNumber)
+						@(context.Code)
 					</Button>
 					</SpaceItem>
 				</Space>
@@ -29,7 +29,7 @@
 			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Indstry)" Property="c=>c.Industry.Name" Sortable Filterable />
 			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.LeadStatus)" Property="c=>c.LeadStatus.Name" Sortable Filterable />
 			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.LeadSource)" Property="c=>c.LeadSource.Name" Sortable Filterable />
-			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Owner)" Property="c=>c.OwnerId" Sortable Filterable />
+			<PropertyColumn Align="columnAlign" Title="@(Resources.DataDictionary.Owner)" Property="c=>c.Owner" Sortable Filterable />
 
 		</Table>
 </LoadingComponent>

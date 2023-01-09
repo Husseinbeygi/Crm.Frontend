@@ -14,21 +14,17 @@
 
 <LoadingComponent Enabled="_isloading">
 	<PageHeader BackIcon="true" Class="site-page-header" BackIconTemplate="icon">
-		<PageHeaderTitle>Title</PageHeaderTitle>
-		<PageHeaderSubtitle>This is a subtitle</PageHeaderSubtitle>
+		<PageHeaderTitle>@(Resources.DataDictionary.Leads)</PageHeaderTitle>
 		<PageHeaderExtra>
 			<Button>@(Resources.ButtonCaptions.Reset)</Button>
 				<Button HtmlType="submit" OnClick="Save" Type="@ButtonType.Primary">@(Resources.ButtonCaptions.Save)</Button>
 			</PageHeaderExtra>
 			<PageHeaderContent>
 				<Descriptions Size="small" Column="3">
-					<DescriptionsItem Title="Created" Span="1">Lili Qu</DescriptionsItem>
-					<DescriptionsItem Title="Association" Span="1"><a>421421</a></DescriptionsItem>
-					<DescriptionsItem Title="Creation Time" Span="1">2017-01-10</DescriptionsItem>
-					<DescriptionsItem Title="Effective Time" Span="1">2017-10-10</DescriptionsItem>
-					<DescriptionsItem Title="Remarks" Span="2">
-						Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
-					</DescriptionsItem>
+					<DescriptionsItem Title="@(Resources.DataDictionary.Created)" Span="1">@(Model.CreatedBy)</DescriptionsItem>
+					<DescriptionsItem Title="@(Resources.DataDictionary.CreatedAt)" Span="2"><a>@(Model.CreatedAt)</a></DescriptionsItem>
+					<DescriptionsItem Title="@(Resources.DataDictionary.Modified)" Span="1">@(Model.ModifiedBy)</DescriptionsItem>
+					<DescriptionsItem Title="@(Resources.DataDictionary.ModifiedAt)" Span="2">@(Model.ModifiedAt)</DescriptionsItem>
 				</Descriptions>
 			</PageHeaderContent>
 		</PageHeader>
@@ -80,7 +76,7 @@
 		_isloading = false;
 	}
 
-	private async Task StatusChanged(string value)
+	private void StatusChanged(string value)
 	{
 		/*
 		 * The Minus ONE is for 
@@ -120,7 +116,7 @@
 			else
 			{
 				res = await _leadService
-				.PostAsync<LeadsViewModel, Response<LeadsViewModel>>("Leads", Model);
+				.PostAsync<LeadsViewModel, Response>("Leads", Model);
 			}
 
 			_primaryForm.LoadingEnabled = false;
@@ -134,7 +130,6 @@
 		else
 		{
 			_primaryForm.ValidateForms();
-
 		}
 	}
 

@@ -204,6 +204,12 @@
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>CreatedAt</value>
+  </data>
   <data name="CurrentDate" xml:space="preserve">
     <value>Current Date</value>
   </data>
@@ -348,6 +354,12 @@
   <data name="MobileVerificationKey" xml:space="preserve">
     <value>Mobile Verification Key</value>
   </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Modified</value>
+  </data>
+  <data name="ModifiedAt" xml:space="preserve">
+    <value>ModifiedAt</value>
+  </data>
   <data name="Money" xml:space="preserve">
     <value>Money</value>
   </data>
@@ -371,6 +383,9 @@
   </data>
   <data name="New" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="NewGeneric" xml:space="preserve">
+    <value>New {0}</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>--None--</value>

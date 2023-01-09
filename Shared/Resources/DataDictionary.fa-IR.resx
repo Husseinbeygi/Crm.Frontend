@@ -210,6 +210,12 @@
   <data name="Country" xml:space="preserve">
     <value>کشور</value>
   </data>
+  <data name="Created" xml:space="preserve">
+    <value>ثبت کننده</value>
+  </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>ثبت شده در</value>
+  </data>
   <data name="CurrentDate" xml:space="preserve">
     <value>تاریخ جاری</value>
   </data>
@@ -351,6 +357,12 @@
   <data name="Mobile" xml:space="preserve">
     <value>تلفن همراه</value>
   </data>
+  <data name="Modified" xml:space="preserve">
+    <value>آخرین ویرایش کننده</value>
+  </data>
+  <data name="ModifiedAt" xml:space="preserve">
+    <value>ویرایش شده در</value>
+  </data>
   <data name="Money" xml:space="preserve">
     <value>مبلغ</value>
   </data>
@@ -374,6 +386,9 @@
   </data>
   <data name="New" xml:space="preserve">
     <value>جدید</value>
+  </data>
+  <data name="NewGeneric" xml:space="preserve">
+    <value> جدید {0}</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>هیچ</value>

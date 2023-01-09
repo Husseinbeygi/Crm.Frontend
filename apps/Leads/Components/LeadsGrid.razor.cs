@@ -68,11 +68,6 @@ public partial class LeadsGrid
 
 		Leads = _leadsResponse.data;
 
-		int i = 1;
-		foreach (var item in Leads)
-		{
-			item.RowNumber = i++;
-		}
 		_isloading = false;
 
 	}

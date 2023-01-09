@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+
+@attribute [AllowAnonymous]
+
+<AuthorizeView>
+	<Authorized>
+		@if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+		{
+			<Crm.FrontEnd.Blazor.Shared.Layouts.Rtl.RtlMainLayout Body=@Body />
+		}else
+		{
+			<Crm.FrontEnd.Blazor.Shared.Layouts.Ltr.LtrMainLayout Body=@Body />
+		}
+	</Authorized>
+	<NotAuthorized>
+		<RedirectToLogin />
+	</NotAuthorized>
+</AuthorizeView>

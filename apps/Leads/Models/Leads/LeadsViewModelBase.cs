@@ -14,7 +14,8 @@ namespace Leads.Models.Leads
 			Rating = new ValueObject();
 		}
 
-		public decimal? AnnualRevenue { get; set; }
+        public long Code { get; set; }
+        public decimal? AnnualRevenue { get; set; }
 		public string? City { get; set; }
 
 		[Display
@@ -24,8 +25,10 @@ namespace Leads.Models.Leads
 				ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 		public string Company { get; set; }
 		public string? Country { get; set; }
-		public long? CreatedAt { get; set; }
+		public DateTime? CreatedAt { get; set; }
 		public Guid? CreatedById { get; set; }
+		public string? CreatedBy { get; set; }
+
 		public string? Description { get; set; }
 
 		[Display
@@ -54,10 +57,13 @@ namespace Leads.Models.Leads
 		[Display(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.Mobile))]
 		public string? Mobile { get; set; }
-		public long? ModifiedAt { get; set; }
+		public DateTime? ModifiedAt { get; set; }
 		public Guid? ModifiedById { get; set; }
+		public string? ModifiedBy { get; set; }
+
 		public int? NumberOfEmployees { get; set; }
 		public Guid? OwnerId { get; set; }
+		public string? Owner { get; set; }
 		public string? Phone { get; set; }
 		public string? PostalCode { get; set; }
 		public string? Address { get; set; }
